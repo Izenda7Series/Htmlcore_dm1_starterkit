@@ -1,0 +1,63 @@
+﻿<!--
+1. This page is accessed Server Side by using the WebURL in the Izenda database.
+2. The structure of this URL is as follows:
+WebURL + /viewer/reportpart/  + [INTERNAL_PRINT_INFORMATION]&token=[YOUR_TOKEN]&masterReportPartId=[SOME_ID]&masterReportPartId=[SOME_OTHER_ID]
+3. For this demonstration, a URL Rewrite Rule is configured in the Web.Config to redirect to this page with the route above is requested.
+-->
+
+<!DOCTYPE html>
+<html>
+<!--Resources required within the head of any page rendering an Izenda container-->
+<head>
+    <title>HTML Embedded Izenda Example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <link href="/izenda/izenda-ui.css?db1ebd9b10aa86f1fd76" rel="stylesheet">
+    <!-- <link href="/scripts/izenda-ui-custom.css" rel="stylesheet" type="text/css" /> -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+    <style>
+        .container {
+            width: 100%;
+            height: 100vh;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+
+<!--Resources required within the body of any page rendering an Izenda container-->
+<body>
+    <!--Izenda container <div> tag-->
+    <div class="container" id="izenda-root"></div>
+    <script type="text/javascript" src="/izenda/izenda_common.js"></script>
+    <script type="text/javascript" src="/izenda/izenda_locales.js"></script>
+    <script type="text/javascript" src="/izenda/izenda_vendors.js"></script>
+    <script type="text/javascript" src="/izenda/izenda_ui.js"></script>
+    <script type="text/javascript" src="izenda.integrate.js"></script>
+
+    <!--Izenda Configuration function and render function-->
+    <script type="text/javascript">
+	 function getUrlVars() {
+		var vars = [], hash;
+		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		for(var i = 0; i < hashes.length; i++)
+		{
+			hash = hashes[i].split('=');
+			vars.push(hash[0]);
+			vars[hash[0]] = hash[1];
+		}
+		return vars;
+	}
+
+     $(document).ready(function () {
+           DoIzendaConfig();
+           var queryStringVars = getUrlVars();
+		   myToken = decodeURIComponent(queryStringVars['token'].toString()); //In 2.10.0 and greater, this should be set to an empty string instead. //Izenda encodes tokens by default because they are found within the query string. To ensure that our token can be decrypted in the back end, we will decode it.
+		   izendaInitReportPartExportViewer(queryStringVars['id'], myToken);
+        });
+    </script>
+</body>
+</html>
+
