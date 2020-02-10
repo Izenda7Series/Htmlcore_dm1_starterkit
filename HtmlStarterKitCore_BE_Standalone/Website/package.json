@@ -1,0 +1,24 @@
+{
+  "name": "htmlkit",
+  "version": "1.0.0",
+  "description": "A DM1 basic html sample integration",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://evanfcrane@bitbucket.org/IzNikki/htmlstarterkitcore_be_standalone.git"
+  },
+  "keywords": [
+    "html"
+  ],
+  "author": "Nikki Blasingame",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/IzNikki/htmlstarterkitcore_be_standalone#readme",
+  "dependencies": {
+    "connect": "^3.7.0",
+    "serve-static": "^1.14.1"
+  }
+}
