@@ -30,6 +30,7 @@ namespace ApiCoreStarterKit.Controllers
             var token = IzendaBoundary.IzendaTokenAuthorization.GetToken(userInfo);
 
             return Ok(token);
+            //return Ok(new { Token = "i7di+WoXTvjk47YhJGhictiBOqsUGIkbgd5B8XizEJ56DC4Ark8TO9YWUs50BH+HFnukB2H1pFZfza4psZCDOA==" });
         }
     }
 }
