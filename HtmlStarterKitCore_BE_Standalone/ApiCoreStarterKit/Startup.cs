@@ -27,6 +27,20 @@ namespace ApiCoreStarterKit
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            //services.AddCors(o => o.AddPolicy("AllowOrigin", builder =>
+            //{
+            //    builder.AllowAnyOrigin()
+            //           .AllowAnyMethod()
+            //           .AllowAnyHeader();
+            //}));
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowOrigin",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +57,7 @@ namespace ApiCoreStarterKit
                     name: "default",
                     template: "api/{controller=Home}/{action=Index}");
             });
+            app.UseCors("AllowOrigin");
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello World!");

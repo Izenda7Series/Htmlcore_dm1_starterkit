@@ -5,7 +5,7 @@ var DoIzendaConfig = function () {
     var hostApi = apiURL + "/api/";
     var configJson = {
         "WebApiUrl": hostApi,
-        "BaseUrl": "/",
+        "BaseUrl": "/izenda",
         "RootPath": "/izenda",
         "CssFile": "izenda-ui.css",
         "Routes": {
@@ -37,7 +37,7 @@ function errorFunc() {
 var DoRender = function (successFunc) {
     $.ajax({
         type: "GET",
-        url: authApplicationURL + "/user/GenerateToken",
+        url: authApplicationURL + "/api/user/GenerateToken",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: successFunc,
@@ -46,29 +46,18 @@ var DoRender = function (successFunc) {
 };
 
 var izendaInit = function () {
+    function successFunc(data, status) {
         var currentUserContext = {
-            //token: data.token
-            token: "i7di+WoXTvjk47YhJGhictiBOqsUGIkbgd5B8XizEJ56DC4Ark8TO9YWUs50BH+HFnukB2H1pFZfza4psZCDOA=="
+            token: data.token
         };
 
         IzendaSynergy.setCurrentUserContext(currentUserContext);
         IzendaSynergy.render(document.getElementById('izenda-root'));
+    }
+
+    this.DoRender(successFunc);
+
 };
-
-//var izendaInit = function () {
-//    function successFunc(data, status) {
-//        var currentUserContext = {
-//            //token: data.token
-//            token: "IMPERSONATED_ADMIN_TOKEN"
-//        };
-
-//        IzendaSynergy.setCurrentUserContext(currentUserContext);
-//        IzendaSynergy.render(document.getElementById('izenda-root'));
-//    }
-
-//    this.DoRender(successFunc);
-
-//};
 
 var izendaInitReport = function () {
 
