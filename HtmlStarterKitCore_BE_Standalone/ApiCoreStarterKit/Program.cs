@@ -14,7 +14,6 @@ namespace ApiCoreStarterKit
     {
         public static void Main(string[] args)
         {
-            //CreateWebHostBuilder(args).Build().Run();
             CreateWebHostBuilder(args).Run();
         }
 
@@ -23,9 +22,5 @@ namespace ApiCoreStarterKit
                 .UseIISIntegration()
                 .UseStartup<Startup>() //This calls the Startup.cs class
                 .Build();
-
-        //public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-        //    WebHost.CreateDefaultBuilder(args)
-        //        .UseStartup<Startup>();
     }
 }

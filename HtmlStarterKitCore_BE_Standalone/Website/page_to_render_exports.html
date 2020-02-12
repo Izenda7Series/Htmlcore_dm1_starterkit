@@ -24,6 +24,16 @@ WebURL + /viewer/reportpart/  + [INTERNAL_PRINT_INFORMATION]&token=[YOUR_TOKEN]&
             height: 100vh;
             min-height: 100vh;
         }
+        #izenda-root > .izenda {
+             background-color: transparent !important;
+        }
+        body {
+            padding: 0 !important;
+        }
+        .container-fluid {
+            padding: 0 !important;
+            line-height: 0 !important;
+        }
     </style>
 </head>
 
@@ -39,25 +49,27 @@ WebURL + /viewer/reportpart/  + [INTERNAL_PRINT_INFORMATION]&token=[YOUR_TOKEN]&
 
     <!--Izenda Configuration function and render function-->
     <script type="text/javascript">
-	 function getUrlVars() {
-		var vars = [], hash;
-		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-		for(var i = 0; i < hashes.length; i++)
-		{
-			hash = hashes[i].split('=');
-			vars.push(hash[0]);
-			vars[hash[0]] = hash[1];
-		}
-		return vars;
-	}
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
 
-     $(document).ready(function () {
-           DoIzendaConfig();
-           var queryStringVars = getUrlVars();
-		   myToken = decodeURIComponent(queryStringVars['token'].toString()); //In 2.10.0 and greater, this should be set to an empty string instead. //Izenda encodes tokens by default because they are found within the query string. To ensure that our token can be decrypted in the back end, we will decode it.
-		   izendaInitReportPartExportViewer(queryStringVars['id'], myToken);
+        $(document).ready(function () {
+            DoIzendaConfig();
+            //izendaInitReportPartExportViewer('F32B0216-DF17-428E-9EDC-03AE6D5F0D69', 'i7di+WoXTvjk47YhJGhictiBOqsUGIkbgd5B8XizEJ56DC4Ark8TO9YWUs50BH+HFnukB2H1pFZfza4psZCDOA==');
+            var queryStringVars = getUrlVars();
+                        //myToken = decodeURIComponent(queryStringVars['token'].toString()); //In 2.10.0 and greater, this should be set to an empty string instead. //Izenda encodes tokens by default because they are found within the query string. To ensure that our token can be decrypted in the back end, we will decode it.
+
+            myToken = decodeURIComponent(queryStringVars[''].toString()); //In 2.10.0 and greater, this should be set to an empty string instead. //Izenda encodes tokens by default because they are found within the query string. To ensure that our token can be decrypted in the back end, we will decode it.
+            izendaInitReportPartExportViewer(queryStringVars['id'], myToken);
         });
     </script>
-</body>
-</html>
+</body >
+</html >
 
