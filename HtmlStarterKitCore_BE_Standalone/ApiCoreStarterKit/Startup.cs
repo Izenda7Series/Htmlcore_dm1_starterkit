@@ -17,22 +17,14 @@ namespace ApiCoreStarterKit
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
         }
         public IConfiguration Configuration { get; }
-
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            //services.AddCors(o => o.AddPolicy("AllowOrigin", builder =>
-            //{
-            //    builder.AllowAnyOrigin()
-            //           .AllowAnyMethod()
-            //           .AllowAnyHeader();
-            //}));
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowOrigin",
@@ -40,7 +32,6 @@ namespace ApiCoreStarterKit
                     .AllowAnyHeader()
                     .AllowAnyMethod());
             });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,12 +41,18 @@ namespace ApiCoreStarterKit
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            //app.UseStaticFiles();
+            //app.UseStaticFiles(new StaticFileOptions()
+            //{
+            //    FileProvider = new PhysicalFileProvider(Path.Combine(env.WebRootPath, "Content")),
+            //    RequestPath = "/api/content"
+            //});
             app.UseMvc(routes =>
-            {               
+            {
+                routes.MapRoute("ReportPart", "izenda/viewer/reportpart/{id}", defaults: new { controller = "Home", action = "ReportPart" });
                 routes.MapRoute(
                     name: "default",
-                    template: "api/{controller=Home}/{action=Index}");
+                    template: "api/{controller=Home}/{action=Index}/{id?}");
             });
             app.UseCors("AllowOrigin");
             app.Run(async (context) =>

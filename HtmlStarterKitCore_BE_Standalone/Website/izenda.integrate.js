@@ -17,7 +17,15 @@ var DoIzendaConfig = function () {
             "ReportViewerPopup": "reportviewerpopup",
             "Viewer": "viewer"
         },
-        "Timeout": 3600
+        "Timeout": 3600,
+        "AjaxSettings": {
+            xhrFields: {
+                withCredentials: true
+            },
+            headers: {
+                customheader: "customvalue"
+            }
+        }
     };
     IzendaSynergy.config(configJson);
 
