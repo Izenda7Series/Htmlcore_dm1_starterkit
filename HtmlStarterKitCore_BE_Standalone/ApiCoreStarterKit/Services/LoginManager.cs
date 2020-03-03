@@ -1,12 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
 
 namespace ApiCoreStarterKit.Services
 {
+    //This class is currently verifying the user's password against the IzendaUser tabke of the configuration database for example purposes
     public class LoginManager
     {
         private string connectionString;
@@ -17,6 +13,7 @@ namespace ApiCoreStarterKit.Services
             connectionString = connString;
         }
 
+        //Currently this validates the login based on the username and password
         public bool ValidateLogin(string username, string password)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -32,7 +29,9 @@ namespace ApiCoreStarterKit.Services
                 string dbPassword = reader["PasswordHash"].ToString();
                 reader.Close();
 
-                if (password.Equals(dbPassword))
+                // Decrypt password for check
+                string userPass = IzendaBoundary.IzendaTokenAuthorization.GetPassword(dbPassword);                
+                if (password.Equals(userPass))
                 {
                     return true;
                 }
