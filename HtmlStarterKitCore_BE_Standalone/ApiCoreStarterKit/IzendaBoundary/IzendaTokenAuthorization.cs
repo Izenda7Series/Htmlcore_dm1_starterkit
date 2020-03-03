@@ -52,6 +52,16 @@ namespace ApiCoreStarterKit.IzendaBoundary
             return user;
         }
 
+        /// <summary>
+        /// Get decrypted password for validation in initial login
+        /// </summary>
+        /// <param name="pass">Encrypted password</param>
+        /// <returns></returns>
+        public static string GetPassword(string pass)
+        {
+            return StringCipher.Decrypt(pass, KEY);
+        }
+
 
         public static UserInfo DecryptIzendaAuthenticationMessage(string encryptedMessage)
         {
