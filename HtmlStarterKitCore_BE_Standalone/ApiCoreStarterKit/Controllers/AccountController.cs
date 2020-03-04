@@ -11,7 +11,7 @@ namespace ApiCoreStarterKit.Controllers
     [RoutePrefix("api/account")]
     public class AccountController : ApiController
     {
-
+        //The below method validates whether the access_token is valid or not
         [HttpGet]
         [Route("validateIzendaAuthToken")]
         public UserInfo ValidateIzendaAuthToken(string access_token)
@@ -22,6 +22,7 @@ namespace ApiCoreStarterKit.Controllers
             return userInfo;
         }
 
+        //The below method grabs the current user's token
         [HttpGet]
         [Route("GetIzendaAccessToken")]
         public IHttpActionResult GetIzendaAccessToken(string message)
@@ -30,7 +31,6 @@ namespace ApiCoreStarterKit.Controllers
             var token = IzendaBoundary.IzendaTokenAuthorization.GetToken(userInfo);
 
             return Ok(token);
-            //return Ok(new { Token = "i7di+WoXTvjk47YhJGhictiBOqsUGIkbgd5B8XizEJ56DC4Ark8TO9YWUs50BH+HFnukB2H1pFZfza4psZCDOA==" });
         }
     }
 }

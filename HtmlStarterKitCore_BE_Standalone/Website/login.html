@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--This page is the login page-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My ASP.NET Application</title>
+    <!--include css and any needed bundles (i.e alertify.css, bootstrap, and any custom css)-->
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse" style="border-radius:0 !important;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <!--Home Page-->
+                    <li><a href="index.html">Home</a></li>
+                    <!--Izenda Page-->
+                    <li><a href="izenda.html">Izenda</a></li>
+                    <!--Login Page-->
+                    <li><a id="lognBtn" href="login.html"> <!---->Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid body-content">
+        <h2>Please Sign In</h2>
+        <div class="row">
+            <div class="col-md-8">
+                <form method="get" action="izenda.html">
+                    <div class="container">
+                        <div class="form-group">
+                            <label for="tenant"><b>Tenant</b></label>
+                            <input type="text" placeholder="Enter Tenant Name" name="tenant" class="form-control" id="tenant">
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><b>Email</b></label>
+                            <input type="email" placeholder="Enter Email" name="email" required class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="psw"><b>Password</b></label>
+                            <input type="password" placeholder="Enter Password" name="psw" required class="form-control" id="psw">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default" name="button_sub" id="button_sub">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid body-content">
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--<script>
+        $("#logoutBtn").click(function () {
+            $("#logoutBtn").hide();
+            $("#loginBtn").show();
+            return false;
+        });
+    </script>-->
+    <!--The below ajax sends the tenant, email, and password to the GenerateToken method-->
+    <script type="text/javascript">
+        $(function () {
+            $("#button_sub").click(function () {
+                var authApplicationURL = "http://localhost:19657/api/user/GenerateToken";
+                var userTenant = document.getElementById("tenant").value;
+                var userEmail = document.getElementById("email").value;
+                var pass = document.getElementById("psw").value;
+                var value = { tenant: userTenant, email: userEmail, password: pass };
+                $.ajax({
+                    url: authApplicationURL,
+                    type: "GET",
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    async: false,
+                    data: value,
+                    success: function (response) {
+                        // The below lines use localStorage to store the token
+                        console.log(response["token"]);
+                        localStorage.setItem('token', response["token"]);
+                        console.log(localStorage.getItem('token'));
+                        var thisToken = localStorage.getItem('token');
+                        //The below lines used cookies to store the token
+                        //document.cookie = "token";
+                        //console.log(document.cookie);
+                    },
+                    error: function (response) {
+                        // Error
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\scott.lee.IZENDA\\Desktop\\Folders\\HtmlStarterKitCore_BE_Standalone\\htmlstarterkitcore_be_standalone\\HtmlStarterKitCore_BE_Standalone\\ApiCoreStarterKit\\ApiCoreStarterKit.csproj": {}
+    "C:\\Users\\nblasingame\\source\\repos\\HtmlStarterKitCore_BE_Standalone\\HtmlStarterKitCore_BE_Standalone\\HtmlStarterKitCore_BE_Standalone\\ApiCoreStarterKit\\ApiCoreStarterKit.csproj": {}
   },
   "projects": {
-    "C:\\Users\\scott.lee.IZENDA\\Desktop\\Folders\\HtmlStarterKitCore_BE_Standalone\\htmlstarterkitcore_be_standalone\\HtmlStarterKitCore_BE_Standalone\\ApiCoreStarterKit\\ApiCoreStarterKit.csproj": {
+    "C:\\Users\\nblasingame\\source\\repos\\HtmlStarterKitCore_BE_Standalone\\HtmlStarterKitCore_BE_Standalone\\HtmlStarterKitCore_BE_Standalone\\ApiCoreStarterKit\\ApiCoreStarterKit.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\scott.lee.IZENDA\\Desktop\\Folders\\HtmlStarterKitCore_BE_Standalone\\htmlstarterkitcore_be_standalone\\HtmlStarterKitCore_BE_Standalone\\ApiCoreStarterKit\\ApiCoreStarterKit.csproj",
+        "projectUniqueName": "C:\\Users\\nblasingame\\source\\repos\\HtmlStarterKitCore_BE_Standalone\\HtmlStarterKitCore_BE_Standalone\\HtmlStarterKitCore_BE_Standalone\\ApiCoreStarterKit\\ApiCoreStarterKit.csproj",
         "projectName": "ApiCoreStarterKit",
-        "projectPath": "C:\\Users\\scott.lee.IZENDA\\Desktop\\Folders\\HtmlStarterKitCore_BE_Standalone\\htmlstarterkitcore_be_standalone\\HtmlStarterKitCore_BE_Standalone\\ApiCoreStarterKit\\ApiCoreStarterKit.csproj",
-        "packagesPath": "C:\\Users\\scott.lee.IZENDA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\scott.lee.IZENDA\\Desktop\\Folders\\HtmlStarterKitCore_BE_Standalone\\htmlstarterkitcore_be_standalone\\HtmlStarterKitCore_BE_Standalone\\ApiCoreStarterKit\\obj\\",
+        "projectPath": "C:\\Users\\nblasingame\\source\\repos\\HtmlStarterKitCore_BE_Standalone\\HtmlStarterKitCore_BE_Standalone\\HtmlStarterKitCore_BE_Standalone\\ApiCoreStarterKit\\ApiCoreStarterKit.csproj",
+        "packagesPath": "C:\\Users\\nblasingame\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nblasingame\\source\\repos\\HtmlStarterKitCore_BE_Standalone\\HtmlStarterKitCore_BE_Standalone\\HtmlStarterKitCore_BE_Standalone\\ApiCoreStarterKit\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\scott.lee.IZENDA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nblasingame\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -92,16 +92,10 @@
             }
           },
           "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
+            "net461"
           ],
           "assetTargetFallback": true,
-          "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "warn": true
         }
       }
     }

@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTML Embedded Izenda Example</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+    <style>
+        .container {
+            width: 100%;
+            height: 100vh;
+            min-height: 100vh;
+        }
+    </style>
+    <link href="/izenda/izenda-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/Content/alertify.js"></script>
+
+</head>
+
+<body>
+    <!--This piece will load the Layout.html for the navigation bar, however the bootstrap css is getting applied to the Izenda window-->
+    <!--<script>
+        $(document).ready(function () {
+            $('#mynav').load("Layout.html");
+        });
+    </script>-->
+    <nav class="navbar navbar-inverse" style="border-radius:0 !important;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <!--Home Page-->
+                    <li><a href="index.html">Home</a></li>
+                    <!--Izenda Page-->
+                    <li><a href="izenda.html">Izenda</a></li>
+                    <!--Logout page. Currently still working on the logout functionality.-->
+                    <li><a id="logoutBtn">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mynav"></div>
+    <div class="container" id="izenda-root"></div>
+    <script type="text/javascript" src=""></script>
+    <script type="text/javascript" src="/izenda/izenda_common.js"></script>
+    <script type="text/javascript" src="/izenda/izenda_locales.js"></script>
+    <script type="text/javascript" src="/izenda/izenda_vendors.js"></script>
+    <script type="text/javascript" src="/izenda/izenda_ui.js"></script>
+    <script type="text/javascript" src="/izenda.integrate.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            DoIzendaConfig();
+            izendaInit();
+        });
+    </script>
+</body>
+</html>

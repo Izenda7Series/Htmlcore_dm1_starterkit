@@ -17,15 +17,7 @@ var DoIzendaConfig = function () {
             "ReportViewerPopup": "reportviewerpopup",
             "Viewer": "viewer"
         },
-        "Timeout": 3600,
-        "AjaxSettings": {
-            xhrFields: {
-                withCredentials: true
-            },
-            headers: {
-                customheader: "customvalue"
-            }
-        }
+        "Timeout": 3600
     };
     IzendaSynergy.config(configJson);
 
@@ -54,16 +46,24 @@ var DoRender = function (successFunc) {
 };
 
 var izendaInit = function () {
-    function successFunc(data, status) {
-        var currentUserContext = {
-            token: data.token
-        };
+    //function successFunc(data, status) {
+    //var currentUserContext = {
+    //    //token: data.token
+    //    token: localStorage.getItem("token")
+    //};
+    //Works with localstorage
+    var tokenFromStorage = localStorage.getItem('token');
+    //var currentUserContext = document.cookie;
+    var currentUserContext = {
+        token: tokenFromStorage
+    };
 
+        console.log(currentUserContext);
         IzendaSynergy.setCurrentUserContext(currentUserContext);
         IzendaSynergy.render(document.getElementById('izenda-root'));
-    }
+    //}
 
-    this.DoRender(successFunc);
+    //this.DoRender(successFunc);
 
 };
 
