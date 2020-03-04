@@ -33,7 +33,7 @@ namespace ApiCoreStarterKit.Controllers
 
             // Check if valid login from IzendaUser table
             LoginManager loginManger = new LoginManager(connectionString);
-            var status = loginManger.ValidateLogin(email, password);
+            var status = loginManger.ValidateLogin(email, password, tenant);
 
             // Login failed
             if (!status)
