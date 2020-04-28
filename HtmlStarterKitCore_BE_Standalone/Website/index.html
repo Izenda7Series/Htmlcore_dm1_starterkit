@@ -9,30 +9,18 @@
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <!--<link href="~/izenda/izenda-ui.css" rel="stylesheet">-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 <body>
-    <nav class="navbar navbar-inverse" style="border-radius:0 !important;">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <!--Home Page-->
-                    <li><a href="index.html">Home</a></li>
-                    <!--Izenda Page-->
-                    <li><a href="izenda.html">Izenda</a></li>
-                    <li><a id="lognBtn" href="login.html"> <!---->Login</a></li>
-                    <!--<li><a id="logoutBtn" style="display:none;">Logout</a></li>-->
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <script>
+        $(function () {
+            $('#header').load('Layout.html');
+        });
+    </script>
+    <div id="header">
+
+    </div>
     <div class="container-fluid body-content">
         <h3>Welcome!</h3>
         <h4>Please sign in by clicking the Login link.</h4>

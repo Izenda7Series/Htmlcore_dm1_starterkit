@@ -16,10 +16,11 @@
         }
     </style>
     <link href="/izenda/izenda-ui.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+    <!--<script src="https://code.jquery.com/jquery-1.12.4.min.js"
             integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script>-->
     <script type="text/javascript" src="/Content/alertify.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 
@@ -30,29 +31,14 @@
             $('#mynav').load("Layout.html");
         });
     </script>-->
-    <nav class="navbar navbar-inverse" style="border-radius:0 !important;">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <!--Home Page-->
-                    <li><a href="index.html">Home</a></li>
-                    <!--Izenda Page-->
-                    <li><a href="izenda.html">Izenda</a></li>
-                    <!--Logout page. Currently still working on the logout functionality.-->
-                    <li><a id="logoutBtn">Logout</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <script>
+        $(function () {
+            $('#header').load('Layout.html');
+        });
+    </script>
+    <div id="header">
 
-    <div id="mynav"></div>
+    </div>
     <div class="container" id="izenda-root"></div>
     <script type="text/javascript" src=""></script>
     <script type="text/javascript" src="/izenda/izenda_common.js"></script>
