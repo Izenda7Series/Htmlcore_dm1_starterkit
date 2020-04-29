@@ -1,4 +1,4 @@
-﻿var apiURL = "http://localhost:8775";
+﻿var apiURL = "http://localhost:6360";
 var authApplicationURL = "http://localhost:19657";
 
 var DoIzendaConfig = function () {
