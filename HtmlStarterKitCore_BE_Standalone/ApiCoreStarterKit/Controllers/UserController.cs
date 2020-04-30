@@ -31,8 +31,8 @@ namespace ApiCoreStarterKit.Controllers
             var connectionString = _configuration.GetConnectionString("DefaultConnection");
 
             // Check if valid login from IzendaUser table
-            var loginManger = new LoginManager(connectionString);
-            var success = loginManger.ValidateLogin(email, password, tenant);
+            var loginManager = new LoginManager(connectionString);
+            var success = loginManager.ValidateLogin(email, password, tenant);
 
             // Login failed
             if (!success)
