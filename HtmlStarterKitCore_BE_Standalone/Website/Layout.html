@@ -1,57 +1,55 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <!--This file was created in order to apply this html page instead of duplicating code-->
-    <!--Currently this is not being used, but you should be able to use jQuery in order to display it
-        (However this will send the css links to subsequent pages)-->
-    <meta charset="utf-8" />
-    <title></title>
-    <link href="Content/bootstrap.css" rel="stylesheet" />
-    <link href="Content/bootstrap.min.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-    async function isLoggedIn () {
-        var token = localStorage.getItem('token');
-        if (!token) return false
-    }
-    </script>
-    <!--<script>
-        $(function () {
-                $("#lognBtn").click(function () {
-                    var token = localStorage.getItem('token');
-                    if (token != null) {
-                        document.getElementById("lognBtn").innerHTML = "Logout"
-                    } else {
-                        document.getElementById("lognBtn").innerHTML = "Login"
-                    }
-                })
-            }
-        );
-    </script>-->
-</head>
-<body>
-
-
-    <nav class="navbar navbar-inverse" style="border-radius:0 !important;">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+    <head>
+        <!--This file was created in order to apply this html page instead of duplicating code-->
+        <!--Currently this is not being used, but you should be able to use jQuery in order to display it
+            (However this will send the css links to subsequent pages)-->
+        <meta charset="utf-8" />
+        <title></title>
+        <link href="Content/bootstrap.css" rel="stylesheet" />
+        <link href="Content/bootstrap.min.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+        async function isLoggedIn () {
+            var token = localStorage.getItem('token');
+            if (!token) return false
+        }
+        </script>
+        <!--<script>
+            $(function () {
+                    $("#lognBtn").click(function () {
+                        var token = localStorage.getItem('token');
+                        if (token != null) {
+                            document.getElementById("lognBtn").innerHTML = "Logout"
+                        } else {
+                            document.getElementById("lognBtn").innerHTML = "Login"
+                        }
+                    })
+                }
+            );
+        </script>-->
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse" style="border-radius:0 !important;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <!--Home Page-->
+                        <li><a href="index.html">Home</a></li>
+                        <!--Izenda Page-->
+                        <li><a href="izenda.html">Izenda</a></li>
+                        <li><a id="lognBtn" href="login.html"> <!---->Login</a></li>
+                        <!--<li><a id="logoutBtn" style="display:none;">Logout</a></li>-->
+                    </ul>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <!--Home Page-->
-                    <li><a href="index.html">Home</a></li>
-                    <!--Izenda Page-->
-                    <li><a href="izenda.html">Izenda</a></li>
-                    <li><a id="lognBtn" href="login.html"> <!---->Login</a></li>
-                    <!--<li><a id="logoutBtn" style="display:none;">Logout</a></li>-->
-                </ul>
-            </div>
-        </div>
-    </nav>
-</body>
+        </nav>
+    </body>
 </html>
