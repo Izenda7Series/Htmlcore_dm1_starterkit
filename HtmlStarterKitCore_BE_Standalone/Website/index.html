@@ -46,16 +46,14 @@
                     <ul class="nav navbar-nav">
                         <li><a href="index.html">Home</a></li>
                         <li id="izendaContent"><a href="izenda.html">Izenda</a></li>
-                        <li class="nav-item" style="cursor: pointer">
-                            <p id="loginText" class="navbar-text">Test</p>
-                        </li>
+                        <li class="nav-item" style="cursor: pointer;"><a id="loginText"></a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
         <script>
-            $('.nav-item').on('click', function () {
+            $(".nav-item").on("click", function () {
                 var token = localStorage.getItem("token");
 
                 if (token != null) {
