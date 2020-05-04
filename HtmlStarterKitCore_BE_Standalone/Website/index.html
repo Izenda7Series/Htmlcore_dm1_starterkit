@@ -11,23 +11,21 @@
 
          <script>
              function checkLoginStatus() {
-                 var loginbtn = document.getElementById("loginbtn");
-                 var logoutbtn = document.getElementById("logoutbtn");
                  var izendaContent = document.getElementById("izendaContent");
                  var token = localStorage.getItem("token");
+
+                 var loginText = document.getElementById("loginText");
 
                  // for debugging
                  console.log(token);
           
                  if (token == null) {
-                     loginbtn.style.display = "block";
-                     logoutbtn.style.display = "none";
                      izendaContent.style.pointerEvents = "none";
                      izendaContent.style.opacity = "0.6";
+                     loginText.innerHTML = "Login";
                  }
                  else {
-                     loginbtn.style.display = "none";
-                     logoutbtn.style.display = "block";
+                     loginText.innerHTML = "Logout";
                  }
              }
         </script>
@@ -48,8 +46,9 @@
                     <ul class="nav navbar-nav">
                         <li><a href="index.html">Home</a></li>
                         <li id="izendaContent"><a href="izenda.html">Izenda</a></li>
-                        <li id="loginbtn"><a id="login-Btn" href="login.html">Login</a></li>
-                        <li id="logoutbtn" class="nav-item" style="cursor: pointer"><a href="index.html">Logout</a></li>
+                        <li class="nav-item" style="cursor: pointer">
+                            <p id="loginText" class="navbar-text">Test</p>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -57,9 +56,14 @@
 
         <script>
             $('.nav-item').on('click', function () {
-                console.log("Logout clicked");
-                // TODO: log out - discuss with Scott
-                localStorage.clear();
+                var token = localStorage.getItem("token");
+
+                if (token != null) {
+                    console.log("Logout clicked");
+                    // TODO: log out - discuss with Scott
+                    localStorage.clear();
+                }
+                window.location.href = "/login.html";
             });
         </script>
 
