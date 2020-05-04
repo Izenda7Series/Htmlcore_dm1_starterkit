@@ -33,7 +33,7 @@ namespace ApiCoreStarterKit.Services
             if (currentUser == null) { return false; }
 
             // check if password matches
-            return password.Equals(IzendaBoundary.IzendaTokenAuthorization.GetPassword(currentUser.Password));
+            return password?.Equals(IzendaBoundary.IzendaTokenAuthorization.GetPassword(currentUser.Password)) ?? false;
         }
 
         private IEnumerable<UserInfo> GetPotentialUsers(string username)
@@ -100,7 +100,7 @@ namespace ApiCoreStarterKit.Services
             }
 
             return tenants;
-        } 
+        }
         #endregion
     }
 }
