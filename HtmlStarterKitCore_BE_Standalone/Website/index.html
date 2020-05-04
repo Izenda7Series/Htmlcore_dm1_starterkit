@@ -1,17 +1,38 @@
 ﻿<!DOCTYPE html>
 <html>
     <head>
-        <!--This is the landing/home page of the application-->
+         <!--This is the landing/home page of the application-->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Izenda HTML kit Home</title>
         <link href="Content/bootstrap.css" rel="stylesheet" />
         <link href="Content/bootstrap.min.css" rel="stylesheet" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+         <script>
+             function checkLoginStatus() {
+                 var loginbtn = document.getElementById("loginbtn");
+                 var logoutbtn = document.getElementById("logoutbtn");
+                 var token = localStorage.getItem("token");
+
+                 // for debugging
+                 console.log(token);
+          
+                 if (token == null) {
+                     loginbtn.style.display = "block";
+                     logoutbtn.style.display = "none";
+                 }
+                 else {
+                     loginbtn.style.display = "none";
+                     logoutbtn.style.display = "block";
+                 }
+             }
+        </script>
     </head>
 
-    <body>
-         <nav class="navbar navbar-inverse" style="border-radius:0 !important;">
+    <body onload="checkLoginStatus()">
+        <nav class="navbar navbar-inverse" style="border-radius:0 !important;">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -24,16 +45,45 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="index.html">Home</a></li>
-                        <li><a id="lognBtn" href="login.html">Login</a></li>
-                        <!--<li><a id="logoutBtn" style="display:none;">Logout</a></li>-->
+                        <li><a href="izenda.html">Izenda</a></li>
+                        <li id="loginbtn"><a id="login-Btn" href="login.html">Login</a></li>
+                        <li id="logoutbtn" class="nav-item" style="cursor: pointer"><a href="index.html">Logout</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-               
-        <div class="container-fluid body-content">
-            <h3>Welcome!</h3>
-            <h4>Please sign in by clicking the Login link.</h4>
+
+        <script>
+            $('.nav-item').on('click', function () {
+                console.log("Logout clicked");
+                // TODO: log out - discuss with Scott
+                localStorage.clear();
+            });
+        </script>
+
+        <div class="jumbotron">
+            <h1>Izenda HTML Core DM1 Starterkit</h1>
+            <h3>This starter kit will help your development team quickly and easily embed Izenda into your application.</h3>
+        </div>
+
+        <div>
+            <div class="col-md-4">
+                <h2>User Integration</h2>
+                <p>Easily integrate your users, roles, and tenants with Izenda. </p>
+                <p><a class="btn btn-primary" href="https://www.izenda.com/docs/dev/api_backend_integration.html?highlight=integration" role="button">Learn more »</a></p>
+            </div>
+
+            <div class="col-md-4">
+                <h2>Hidden Filters</h2>
+                <p>Our flexible API allows you to apply row-level security to your data sources. Filter data by user, role, tenant, or your own custom logic. </p>
+                <p><a class="btn btn-primary" href="https://www.izenda.com/docs/dev/howto_webformskit.html?highlight=hidden%20filter#hidden-filters" role="button">Learn more »</a></p>
+            </div>
+
+            <div class="col-md-4">
+                <h2>Security</h2>
+                <p>Review best practices to help ensure a safe and secure deployment of Izenda.</p>
+                <p><a class="btn btn-primary" href="https://www.izenda.com/docs/ref/models/_security.html?highlight=security" role="button">Learn more »</a></p>
+            </div>
         </div>
     </body>
 </html>
