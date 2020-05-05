@@ -1,30 +1,94 @@
 ﻿<!DOCTYPE html>
 <html>
     <head>
-        <!--This is the landing/home page of the application-->
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>My ASP.NET Application</title>
-        <!--include css and any needed bundles (i.e alertify.css, bootstrap, and any custom css)-->
-        <link href="Content/bootstrap.css" rel="stylesheet" />
-        <link href="Content/bootstrap.min.css" rel="stylesheet" />
-        <!--<link href="~/izenda/izenda-ui.css" rel="stylesheet">-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+         <title>Izenda HTML kit Home</title>
+        
+         <meta charset="utf-8" />
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+         <script>
+             function checkLoginStatus() {
+                 var izendaContent = document.getElementById("izendaContent");
+                 var token = localStorage.getItem("token");
+
+                 var loginText = document.getElementById("loginText");
+
+                 // for debugging
+                 console.log(token);
+          
+                 if (token == null) {
+                     izendaContent.style.pointerEvents = "none";
+                     izendaContent.style.opacity = "0.6";
+                     loginText.innerHTML = "Login";
+                 }
+                 else {
+                     loginText.innerHTML = "Logout";
+                 }
+             }
+        </script>
     </head>
 
-    <body>
+    <body onload="checkLoginStatus()">
+        <nav class="navbar navbar-inverse" style="border-radius:0 !important;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li id="izendaContent"><a href="izenda.html">Izenda</a></li>
+                        <li class="nav-item" style="cursor: pointer;"><a id="loginText"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
         <script>
-            $(function () {
-                $('#header').load('Layout.html');
+            $(".nav-item").on("click", function () {
+                var token = localStorage.getItem("token");
+
+                if (token != null) {
+                    console.log("Logout clicked");
+                    // TODO: log out - discuss with Scott
+                    localStorage.clear();
+                }
+                window.location.href = "/login.html";
             });
         </script>
-       
-        <div id="header"></div>
-        
-        <div class="container-fluid body-content">
-            <h3>Welcome!</h3>
-            <h4>Please sign in by clicking the Login link.</h4>
+
+        <div class="jumbotron">
+            <h1>Izenda HTML Core DM1 Starterkit</h1>
+            <h3>This starter kit will help your development team quickly and easily embed Izenda into your application.</h3>
+        </div>
+
+        <!--TODO: Update links-->
+        <div>
+            <div class="col-md-4">
+                <h2>User Integration</h2>
+                <p>Easily integrate your users, roles, and tenants with Izenda. </p>
+                <p><a class="btn btn-primary" href="https://www.izenda.com/docs/dev/api_backend_integration.html" role="button">Learn more »</a></p>
+            </div>
+
+            <div class="col-md-4">
+                <h2>Hidden Filters</h2>
+                <p>Our flexible API allows you to apply row-level security to your data sources. Filter data by user, role, tenant, or your own custom logic. </p>
+                <p><a class="btn btn-primary" href="https://www.izenda.com/docs/dev/code_modifying_user_access_token.html" role="button">Learn more »</a></p>
+            </div>
+
+            <div class="col-md-4">
+                <h2>Security</h2>
+                <p>Review best practices to help ensure a safe and secure deployment of Izenda.</p>
+                <p><a class="btn btn-primary" href="https://www.izenda.com/docs/ref/models/_security.html" role="button">Learn more »</a></p>
+            </div>
         </div>
     </body>
 </html>

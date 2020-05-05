@@ -57,7 +57,7 @@ namespace ApiCoreStarterKit
             app.UseCors("AllowOrigin");
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                await context.Response.WriteAsync("<h1>Izenda System Settings Landing Page</h1>");
             });
         }
     }

@@ -1,11 +1,15 @@
 ﻿<!DOCTYPE html>
 <html>
     <head>
-        <title>HTML Embedded Izenda Example</title>
+        <title>HTML Embedded Izenda Example Page</title>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="/izenda/izenda-ui.css" rel="stylesheet">
 
         <style>
             #izenda-root {
@@ -14,20 +18,37 @@
                 min-height: 100vh;
             }
         </style>
-
-        <link href="/izenda/izenda-ui.css" rel="stylesheet">
-        <script type="text/javascript" src="/Content/alertify.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
 
     <body>
+         <nav class="navbar navbar-inverse" style="border-radius:0 !important;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="izenda.html">Izenda</a></li>
+                        <li class="nav-item" style="cursor: pointer"><a href="login.html">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
         <script>
-            $(function () {
-                $('#header').load('Layout.html');
+            $('.nav-item').on('click', function () {
+                console.log("Logout clicked");
+                // TODO: log out - discuss with Scott
+                localStorage.clear();
             });
         </script>
 
-        <div id="header"></div>
         <div id="izenda-root"></div>
 
         <script type="text/javascript" src=""></script>
