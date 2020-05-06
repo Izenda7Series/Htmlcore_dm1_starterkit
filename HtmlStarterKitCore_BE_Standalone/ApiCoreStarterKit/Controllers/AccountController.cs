@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using ApiCoreStarterKit.Models;
+using System;
 using System.Web.Http;
-using ApiCoreStarterKit.Models;
 
 namespace ApiCoreStarterKit.Controllers
 {
     [RoutePrefix("api/account")]
     public class AccountController : ApiController
     {
-
+        #region Methods
         [HttpGet]
         [Route("validateIzendaAuthToken")]
         public UserInfo ValidateIzendaAuthToken(string access_token)
@@ -30,7 +26,7 @@ namespace ApiCoreStarterKit.Controllers
             var token = IzendaBoundary.IzendaTokenAuthorization.GetToken(userInfo);
 
             return Ok(token);
-            //return Ok(new { Token = "i7di+WoXTvjk47YhJGhictiBOqsUGIkbgd5B8XizEJ56DC4Ark8TO9YWUs50BH+HFnukB2H1pFZfza4psZCDOA==" });
-        }
+        } 
+        #endregion
     }
 }

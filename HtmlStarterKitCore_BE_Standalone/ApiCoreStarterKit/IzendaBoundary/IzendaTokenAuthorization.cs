@@ -1,20 +1,18 @@
 ﻿using ApiCoreStarterKit.Models;
-using Microsoft.IdentityModel.Protocols;
 using System;
 using System.Configuration;
 
 namespace ApiCoreStarterKit.IzendaBoundary
 {
-    public class IzendaTokenAuthorization
+    public static class IzendaTokenAuthorization
     {
-#warning Change this key!!
+        #warning Change this key!!
         const string KEY = "THISISKEY1234567"; //must be at least 16 characters long (128 bits)
-
+       
+        #region Methods
         /// <summary>
         /// Generate token from UserInfo. Userinfo will be encrypted before sending to Izenda.
         /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
         public static string GetToken(UserInfo user)
         {
             // remove tenant property when sending token to Izenda, if Tenant is System.
@@ -22,36 +20,37 @@ namespace ApiCoreStarterKit.IzendaBoundary
                 user.TenantUniqueName = null;
 
             var serializedObject = Newtonsoft.Json.JsonConvert.SerializeObject(user);
-
             var token = StringCipher.Encrypt(serializedObject, KEY);
+
             return token;
         }
 
         /// <summary>
         /// Get the token for IzendaAdmin user, to communicate with Izenda to process when user has not been logged in.
         /// </summary>
-        /// <returns></returns>
         public static string GetIzendaAdminToken()
         {
             var userName = ConfigurationManager.AppSettings["IzendaAdminUser"];
-
             var user = new UserInfo { UserName = userName };
+
             return GetToken(user);
         }
-
 
         /// <summary>
         /// Get User info from token. Token, which recieved from Izenda, will be decrypted to get user info.
         /// </summary>
-        /// <param name="token"></param>
-        /// <returns></returns>
         public static UserInfo GetUserInfo(string token)
         {
             var serializedObject = StringCipher.Decrypt(token, KEY);
             var user = Newtonsoft.Json.JsonConvert.DeserializeObject<UserInfo>(serializedObject);
+
             return user;
         }
 
+        /// <summary>
+        /// Get decrypted password for validation in initial login
+        /// </summary>
+        public static string GetPassword(string pass) => StringCipher.Decrypt(pass, KEY);
 
         public static UserInfo DecryptIzendaAuthenticationMessage(string encryptedMessage)
         {
@@ -89,6 +88,7 @@ namespace ApiCoreStarterKit.IzendaBoundary
                 byte bt = 0;
                 ushort twobytes = 0;
                 twobytes = binr.ReadUInt16();
+
                 if (twobytes == 0x8130)
                     binr.ReadByte();
                 else if (twobytes == 0x8230)
@@ -148,7 +148,9 @@ namespace ApiCoreStarterKit.IzendaBoundary
                 count -= 1;
             }
             binr.BaseStream.Seek(-1, System.IO.SeekOrigin.Current);
+
             return count;
-        }
+        } 
+        #endregion
     }
 }

@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Izenda Login / Logout</title>
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <script>
+            function checkLoginStatus() {
+                var loginbtn = document.getElementById("loginbtn");
+                var izendaContent = document.getElementById("izendaContent");
+                var token = localStorage.getItem("token");
+
+                // for debugging
+                console.log(token);
+                console.log(loginbtn);
+                console.log(izendaContent);
+
+                // prevent clicking izenda button
+                if (token == null) {
+                    izendaContent.style.pointerEvents = "none";
+                    izendaContent.style.opacity = "0.6";
+                }
+            }
+        </script>
+    </head>
+
+    <body onload="checkLoginStatus()">
+        <nav class="navbar navbar-inverse" style="border-radius:0 !important;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li id="izendaContent"><a href="izenda.html">Izenda</a></li>
+                        <li id="loginbtn"><a id="login-Btn" href="login.html">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid body-content">
+            <h2>Please Sign In</h2>
+            <div class="row">
+                <div class="col-md-8">
+                    <form method="get">
+                        <div class="container">
+                            <div class="form-group">
+                                <label for="tenant"><b>Tenant</b></label>
+                                <input type="text" placeholder="Enter Tenant Name" name="tenant" class="form-control" id="tenant">
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><b>Email</b></label>
+                                <input type="email" placeholder="Enter Email" name="email" required class="form-control" id="email" value="IzendaAdmin@system.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="psw"><b>Password</b></label>
+                                <input type="password" placeholder="Enter Password" name="psw" required class="form-control" id="psw" value="Izenda@123">
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-default" name="button_sub" id="button_sub">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--The below ajax sends the tenant, email, and password to the GenerateToken method-->
+        <script type="text/javascript">
+            $(function () {
+                $("#button_sub").click(function () {
+                    var authApplicationURL = "http://localhost:19657/api/user/GenerateToken";
+                    var userTenant = document.getElementById("tenant").value;
+                    var userEmail = document.getElementById("email").value;
+                    var pass = document.getElementById("psw").value;
+                    var value = { tenant: userTenant, email: userEmail, password: pass };
+
+                    $.ajax({
+                        url: authApplicationURL,
+                        type: "GET",
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        async: false,
+                        data: value,
+                        success: function (response) {
+                            // The below lines use localStorage to store the token
+                            console.log(response["token"]);
+                            localStorage.setItem('token', response["token"]);
+                            console.log(localStorage.getItem('token'));
+
+                            //The below lines used cookies to store the token
+                            //document.cookie = "token";
+                            //console.log(document.cookie);
+
+                            //redirect
+                            window.location.href = "/izenda.html";
+                        },
+                        error: function (response) {
+                            console.log(response);
+
+                            window.alert("Login failed. Please check your credentials again.");
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
