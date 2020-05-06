@@ -43,7 +43,7 @@ namespace ApiCoreStarterKit.Services
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                var queryString = $"SELECT UserName, PasswordHash, TenantId FROM IzendaUser WHERE UserName = '{username}';";
+                var queryString = $"SELECT UserName, PasswordHash, Tenant_Id FROM ApplicationUsers WHERE UserName = '{username}';";
 
                 var command = new SqlCommand(queryString, connection);
                 command.Connection.Open();
@@ -52,7 +52,7 @@ namespace ApiCoreStarterKit.Services
                 // Get potential list of users
                 while (reader.Read())
                 {
-                    var tenantId = reader["TenantId"].ToString();
+                    var tenantId = reader["Tenant_Id"].ToString();
                     var user = new UserInfo
                     {
                         UserName = reader["UserName"].ToString(),
@@ -77,11 +77,11 @@ namespace ApiCoreStarterKit.Services
 
         private IEnumerable<TenantInfo> GetTenants()
         {
-            List<TenantInfo> tenants = new List<TenantInfo>();
+            var tenants = new List<TenantInfo>();
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                var queryString = $"SELECT Id, TenantID, Name FROM IzendaTenant;";
+                var queryString = $"SELECT Id, Tenant_Id, UserName FROM ApplicationUsers;";
 
                 var command = new SqlCommand(queryString, connection);
                 command.Connection.Open();
@@ -92,8 +92,8 @@ namespace ApiCoreStarterKit.Services
                     tenants.Add(new TenantInfo
                     {
                         Id = reader["Id"].ToString(),
-                        TenantId = reader["TenantID"].ToString(),
-                        Name = reader["Name"].ToString()
+                        TenantId = reader["Tenant_Id"].ToString(),
+                        Name = reader["UserName"].ToString()
                     });
                 }
                 reader.Close();
