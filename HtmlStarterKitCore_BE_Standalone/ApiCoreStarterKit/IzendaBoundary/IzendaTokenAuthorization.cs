@@ -7,7 +7,7 @@ namespace ApiCoreStarterKit.IzendaBoundary
     public static class IzendaTokenAuthorization
     {
         #warning Change this key!!
-        const string KEY = "THISISKEY1234567"; //must be at least 16 characters long (128 bits)
+        private const string KEY = "THISISKEY1234567"; //must be at least 16 characters long (128 bits)
        
         #region Methods
         /// <summary>
