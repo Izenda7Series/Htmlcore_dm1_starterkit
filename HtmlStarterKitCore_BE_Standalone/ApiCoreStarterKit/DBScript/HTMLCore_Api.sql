@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[IzendaAccessRight]    Script Date: 4/29/2020 10:30:00 AM ******/
+/****** Object:  Table [dbo].[IzendaAccessRight]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22,7 +22,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaAdvancedSetting]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaAdvancedSetting]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -49,7 +49,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaCity]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaCity]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -81,7 +81,7 @@ CREATE TABLE [dbo].[IzendaCity](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaCommonFilterField]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaCommonFilterField]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -112,7 +112,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaConnection]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaConnection]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -144,7 +144,7 @@ CREATE TABLE [dbo].[IzendaConnection](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaCountryCode]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaCountryCode]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -159,7 +159,7 @@ CREATE TABLE [dbo].[IzendaCountryCode](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaDashboard]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaDashboard]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -199,7 +199,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaDashboardPart]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaDashboardPart]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -234,7 +234,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaDashboardPartFilterField]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaDashboardPartFilterField]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -261,7 +261,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaDataFormat]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaDataFormat]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -294,7 +294,7 @@ CREATE TABLE [dbo].[IzendaDataFormat](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaDataSourceCategory]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaDataSourceCategory]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -318,7 +318,7 @@ CREATE TABLE [dbo].[IzendaDataSourceCategory](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaDataTypeFunctionMapping]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaDataTypeFunctionMapping]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -343,7 +343,7 @@ CREATE TABLE [dbo].[IzendaDataTypeFunctionMapping](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaDBVersion]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaDBVersion]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -359,7 +359,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaEmailSetting]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaEmailSetting]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -390,7 +390,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaExportMarginDefaultValue]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaExportMarginDefaultValue]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -419,7 +419,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaFilterField]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaFilterField]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -469,7 +469,7 @@ CREATE TABLE [dbo].[IzendaFilterField](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaFilterOperator]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaFilterOperator]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -496,7 +496,7 @@ CREATE TABLE [dbo].[IzendaFilterOperator](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaFilterOperatorGroup]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaFilterOperatorGroup]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -520,7 +520,7 @@ CREATE TABLE [dbo].[IzendaFilterOperatorGroup](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaFilterOperatorRule]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaFilterOperatorRule]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -545,7 +545,7 @@ CREATE TABLE [dbo].[IzendaFilterOperatorRule](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaFunction]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaFunction]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -572,7 +572,7 @@ CREATE TABLE [dbo].[IzendaFunction](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaGlobalDatabaseMapping]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaGlobalDatabaseMapping]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -603,7 +603,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaLanguage]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaLanguage]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -623,7 +623,7 @@ CREATE TABLE [dbo].[IzendaLanguage](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaLicenseSetting]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaLicenseSetting]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -649,7 +649,7 @@ CREATE TABLE [dbo].[IzendaLicenseSetting](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaPasswordHistory]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaPasswordHistory]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -674,7 +674,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaPerformanceStatsTrend]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaPerformanceStatsTrend]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -714,7 +714,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaPostalCode]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaPostalCode]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -730,7 +730,7 @@ CREATE TABLE [dbo].[IzendaPostalCode](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaQuerySource]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaQuerySource]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -762,7 +762,7 @@ CREATE TABLE [dbo].[IzendaQuerySource](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaQuerySourceCategory]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaQuerySourceCategory]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -787,7 +787,7 @@ CREATE TABLE [dbo].[IzendaQuerySourceCategory](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaQuerySourceField]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaQuerySourceField]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -830,7 +830,7 @@ CREATE TABLE [dbo].[IzendaQuerySourceField](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaRelationship]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaRelationship]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -864,7 +864,7 @@ CREATE TABLE [dbo].[IzendaRelationship](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaRelationshipKeyJoin]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaRelationshipKeyJoin]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -897,7 +897,7 @@ CREATE TABLE [dbo].[IzendaRelationshipKeyJoin](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaReport]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaReport]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -949,7 +949,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaReportCategory]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaReportCategory]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -977,7 +977,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaReportDataSource]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaReportDataSource]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1002,7 +1002,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaReportFilter]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaReportFilter]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1027,7 +1027,7 @@ CREATE TABLE [dbo].[IzendaReportFilter](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaReportHistory]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaReportHistory]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1053,7 +1053,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaReportPart]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaReportPart]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1084,7 +1084,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaReportSetting]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaReportSetting]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1113,7 +1113,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaRole]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaRole]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1140,7 +1140,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaSecurityPolicy]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaSecurityPolicy]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1184,7 +1184,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaSecurityQuestion]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaSecurityQuestion]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1205,7 +1205,7 @@ CREATE TABLE [dbo].[IzendaSecurityQuestion](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaServer]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaServer]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1229,7 +1229,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaSubsCommonFilterField]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaSubsCommonFilterField]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1256,7 +1256,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaSubscription]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaSubscription]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1310,7 +1310,7 @@ CREATE TABLE [dbo].[IzendaSubscription](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaSubscriptionFilterField]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaSubscriptionFilterField]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1337,7 +1337,7 @@ CREATE TABLE [dbo].[IzendaSubscriptionFilterField](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaSystemSetting]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaSystemSetting]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1361,7 +1361,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaSystemVariable]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaSystemVariable]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1381,7 +1381,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaTemporaryData]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaTemporaryData]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1402,7 +1402,7 @@ CREATE TABLE [dbo].[IzendaTemporaryData](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaTenant]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaTenant]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1430,7 +1430,7 @@ CREATE TABLE [dbo].[IzendaTenant](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaTimePeriod]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaTimePeriod]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1456,7 +1456,7 @@ CREATE TABLE [dbo].[IzendaTimePeriod](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaUser]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaUser]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1500,7 +1500,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaUserPermission]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaUserPermission]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1529,7 +1529,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaUserRole]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaUserRole]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1553,7 +1553,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaUserSecurityQuestion]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaUserSecurityQuestion]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1578,7 +1578,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaWorkspace]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaWorkspace]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1619,7 +1619,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaWorkspaceMapping]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaWorkspaceMapping]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1644,7 +1644,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaWorkspaceMappingTenant]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaWorkspaceMappingTenant]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1657,7 +1657,7 @@ CREATE TABLE [dbo].[IzendaWorkspaceMappingTenant](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [dbo].[IzendaWorkspaceTenant]    Script Date: 7/12/17 11:06:44 AM ******/
+/****** Object:  Table [dbo].[IzendaWorkspaceTenant]    Script Date: 5/6/2020 14:00:00 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3491,7 +3491,7 @@ INSERT [dbo].[IzendaUser] ([Id], [UserName], [FirstName], [LastName], [PasswordH
 INSERT [dbo].[IzendaUser] ([Id], [UserName], [FirstName], [LastName], [PasswordHash], [PasswordSalt], [TenantId], [Version], [Created], [CreatedBy], [Modified], [ModifiedBy], [EmailAddress], [CurrentTokenHash], [Active], [Deleted], [DataOffset], [TimestampOffset], [InitPassword], [RetryLoginTime], [LastTimeAccessed], [PasswordLastChanged], [Locked], [LockedDate], [CultureName], [DateFormat], [SystemAdmin], [SecurityQuestionLastChanged], [NumberOfFailedSecurityQuestion]) VALUES (N'9d2f1d51-0e3d-44db-bfc7-da94a7581bfe', N'IzendaAdmin@system.com', N'System', N'Admin', N'Ni44BUzGHfooivlGlIa6KSvWgH8V17dTCzled+nfTo2WNns6JJRa8dDT+KTWawe5veauvEB/NAiwnZA6KfdfJQ==', N'shKEvBNweSW0VLSX6Q==', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, N'MM/DD/YYYY', 1, NULL, NULL)
 INSERT [dbo].[IzendaUserRole] ([Id], [UserId], [RoleId], [Version], [Deleted], [Created], [CreatedBy], [Modified], [ModifiedBy]) VALUES (N'b4335221-fbcf-4310-a908-3518ac495e7f', N'59331862-a742-4948-b500-17c92f12b7d0', N'69c1a5ef-048b-41bc-9b83-f24d64dbfe6c', 1, 0, CAST(N'2017-02-22T04:39:51.557' AS DateTime), N'System Admin', CAST(N'2017-02-22T04:39:51.557' AS DateTime), N'System Admin')
 INSERT [dbo].[IzendaUserRole] ([Id], [UserId], [RoleId], [Version], [Deleted], [Created], [CreatedBy], [Modified], [ModifiedBy]) VALUES (N'4bdd2a12-3683-410d-8696-fef405d524e3', N'2d58c774-7f02-41dd-9392-d0c5016208ca', N'ea98b2ca-6ac7-40f7-bbf2-ebd0e3184c23', 1, 0, CAST(N'2017-02-07T08:54:32.833' AS DateTime), N'$RootAdmin$', CAST(N'2017-02-07T08:54:32.833' AS DateTime), N'$RootAdmin$')
-/****** Object:  Index [IX_Dashboard_Category_SUB_Tenant_DEL]    Script Date: 7/12/17 11:06:45 AM ******/
+/****** Object:  Index [IX_Dashboard_Category_SUB_Tenant_DEL]    Script Date: 5/6/2020 14:00:00 PM ******/
 IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[IzendaDashboard]') AND name = N'IX_Dashboard_Category_SUB_Tenant_DEL')
 CREATE NONCLUSTERED INDEX [IX_Dashboard_Category_SUB_Tenant_DEL] ON [dbo].[IzendaDashboard]
 (
@@ -3504,7 +3504,7 @@ GO
 SET ANSI_PADDING ON
 
 GO
-/****** Object:  Index [IX_Dashboard_Name_Category_SUB_Tenant_DEL]    Script Date: 7/12/17 11:06:45 AM ******/
+/****** Object:  Index [IX_Dashboard_Name_Category_SUB_Tenant_DEL]    Script Date: 5/6/2020 14:00:00 PM ******/
 IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[IzendaDashboard]') AND name = N'IX_Dashboard_Name_Category_SUB_Tenant_DEL')
 CREATE NONCLUSTERED INDEX [IX_Dashboard_Name_Category_SUB_Tenant_DEL] ON [dbo].[IzendaDashboard]
 (
@@ -3515,7 +3515,7 @@ CREATE NONCLUSTERED INDEX [IX_Dashboard_Name_Category_SUB_Tenant_DEL] ON [dbo].[
 	[Deleted] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_QuerySourceField_DeletedAndQuerySourceId]    Script Date: 7/12/17 11:06:45 AM ******/
+/****** Object:  Index [IX_QuerySourceField_DeletedAndQuerySourceId]    Script Date: 5/6/2020 14:00:00 PM ******/
 IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[IzendaQuerySourceField]') AND name = N'IX_QuerySourceField_DeletedAndQuerySourceId')
 CREATE NONCLUSTERED INDEX [IX_QuerySourceField_DeletedAndQuerySourceId] ON [dbo].[IzendaQuerySourceField]
 (
@@ -3523,7 +3523,7 @@ CREATE NONCLUSTERED INDEX [IX_QuerySourceField_DeletedAndQuerySourceId] ON [dbo]
 	[QuerySourceId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [QuerySourceFieldIndex]    Script Date: 7/12/17 11:06:45 AM ******/
+/****** Object:  Index [QuerySourceFieldIndex]    Script Date: 5/6/2020 14:00:00 PM ******/
 IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[IzendaQuerySourceField]') AND name = N'QuerySourceFieldIndex')
 CREATE NONCLUSTERED INDEX [QuerySourceFieldIndex] ON [dbo].[IzendaQuerySourceField]
 (
@@ -3531,7 +3531,7 @@ CREATE NONCLUSTERED INDEX [QuerySourceFieldIndex] ON [dbo].[IzendaQuerySourceFie
 	[ReportId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Relationship_JointField_ForeignField]    Script Date: 7/12/17 11:06:45 AM ******/
+/****** Object:  Index [IX_Relationship_JointField_ForeignField]    Script Date: 5/6/2020 14:00:00 PM ******/
 IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[IzendaRelationship]') AND name = N'IX_Relationship_JointField_ForeignField')
 CREATE NONCLUSTERED INDEX [IX_Relationship_JointField_ForeignField] ON [dbo].[IzendaRelationship]
 (
@@ -3539,7 +3539,7 @@ CREATE NONCLUSTERED INDEX [IX_Relationship_JointField_ForeignField] ON [dbo].[Iz
 	[ForeignFieldId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Relationship_JQS_FQS_RPT_DEL_SR]    Script Date: 7/12/17 11:06:45 AM ******/
+/****** Object:  Index [IX_Relationship_JQS_FQS_RPT_DEL_SR]    Script Date: 5/6/2020 14:00:00 PM ******/
 IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[IzendaRelationship]') AND name = N'IX_Relationship_JQS_FQS_RPT_DEL_SR')
 CREATE NONCLUSTERED INDEX [IX_Relationship_JQS_FQS_RPT_DEL_SR] ON [dbo].[IzendaRelationship]
 (
@@ -3550,7 +3550,7 @@ CREATE NONCLUSTERED INDEX [IX_Relationship_JQS_FQS_RPT_DEL_SR] ON [dbo].[IzendaR
 	[Deleted] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Relationship_Report_DEL]    Script Date: 7/12/17 11:06:45 AM ******/
+/****** Object:  Index [IX_Relationship_Report_DEL]    Script Date: 5/6/2020 14:00:00 PM ******/
 IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[IzendaRelationship]') AND name = N'IX_Relationship_Report_DEL')
 CREATE NONCLUSTERED INDEX [IX_Relationship_Report_DEL] ON [dbo].[IzendaRelationship]
 (
@@ -3561,14 +3561,14 @@ GO
 SET ANSI_PADDING ON
 
 GO
-/****** Object:  Index [IX_Reletionship_Alias]    Script Date: 7/12/17 11:06:45 AM ******/
+/****** Object:  Index [IX_Reletionship_Alias]    Script Date: 5/6/2020 14:00:00 PM ******/
 IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[IzendaRelationship]') AND name = N'IX_Reletionship_Alias')
 CREATE NONCLUSTERED INDEX [IX_Reletionship_Alias] ON [dbo].[IzendaRelationship]
 (
 	[Alias] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_IzendaReport]    Script Date: 7/12/17 11:06:45 AM ******/
+/****** Object:  Index [IX_IzendaReport]    Script Date: 5/6/2020 14:00:00 PM ******/
 IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[IzendaReport]') AND name = N'IX_IzendaReport')
 CREATE NONCLUSTERED INDEX [IX_IzendaReport] ON [dbo].[IzendaReport]
 (
@@ -3576,7 +3576,7 @@ CREATE NONCLUSTERED INDEX [IX_IzendaReport] ON [dbo].[IzendaReport]
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Report_Category_SUB_Tenant_Type_DEL]    Script Date: 7/12/17 11:06:45 AM ******/
+/****** Object:  Index [IX_Report_Category_SUB_Tenant_Type_DEL]    Script Date: 5/6/2020 14:00:00 PM ******/
 IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[IzendaReport]') AND name = N'IX_Report_Category_SUB_Tenant_Type_DEL')
 CREATE NONCLUSTERED INDEX [IX_Report_Category_SUB_Tenant_Type_DEL] ON [dbo].[IzendaReport]
 (
@@ -3590,7 +3590,7 @@ GO
 SET ANSI_PADDING ON
 
 GO
-/****** Object:  Index [IX_Report_Name_Category_SUB_Tenant_Type_DEL]    Script Date: 7/12/17 11:06:45 AM ******/
+/****** Object:  Index [IX_Report_Name_Category_SUB_Tenant_Type_DEL]    Script Date: 5/6/2020 14:00:00 PM ******/
 IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[IzendaReport]') AND name = N'IX_Report_Name_Category_SUB_Tenant_Type_DEL')
 CREATE NONCLUSTERED INDEX [IX_Report_Name_Category_SUB_Tenant_Type_DEL] ON [dbo].[IzendaReport]
 (
@@ -3602,7 +3602,7 @@ CREATE NONCLUSTERED INDEX [IX_Report_Name_Category_SUB_Tenant_Type_DEL] ON [dbo]
 	[Deleted] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Report_Tenant_Type_DEL]    Script Date: 7/12/17 11:06:45 AM ******/
+/****** Object:  Index [IX_Report_Tenant_Type_DEL]    Script Date: 5/6/2020 14:00:00 PM ******/
 IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[IzendaReport]') AND name = N'IX_Report_Tenant_Type_DEL')
 CREATE NONCLUSTERED INDEX [IX_Report_Tenant_Type_DEL] ON [dbo].[IzendaReport]
 (
@@ -3611,7 +3611,7 @@ CREATE NONCLUSTERED INDEX [IX_Report_Tenant_Type_DEL] ON [dbo].[IzendaReport]
 	[Deleted] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_IzendaReportDataSource]    Script Date: 7/12/17 11:06:45 AM ******/
+/****** Object:  Index [IX_IzendaReportDataSource]    Script Date: 5/6/2020 14:00:00 PM ******/
 IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[IzendaReportDataSource]') AND name = N'IX_IzendaReportDataSource')
 CREATE NONCLUSTERED INDEX [IX_IzendaReportDataSource] ON [dbo].[IzendaReportDataSource]
 (
@@ -3619,7 +3619,7 @@ CREATE NONCLUSTERED INDEX [IX_IzendaReportDataSource] ON [dbo].[IzendaReportData
 	[ReportId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_IzendaReportHistory]    Script Date: 7/12/17 11:06:45 AM ******/
+/****** Object:  Index [IX_IzendaReportHistory]    Script Date: 5/6/2020 14:00:00 PM ******/
 IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[IzendaReportHistory]') AND name = N'IX_IzendaReportHistory')
 CREATE NONCLUSTERED INDEX [IX_IzendaReportHistory] ON [dbo].[IzendaReportHistory]
 (
@@ -3627,7 +3627,7 @@ CREATE NONCLUSTERED INDEX [IX_IzendaReportHistory] ON [dbo].[IzendaReportHistory
 	[ReportId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_ReportHistory_Modified_DEL]    Script Date: 7/12/17 11:06:45 AM ******/
+/****** Object:  Index [IX_ReportHistory_Modified_DEL]    Script Date: 5/6/2020 14:00:00 PM ******/
 IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[IzendaReportHistory]') AND name = N'IX_ReportHistory_Modified_DEL')
 CREATE NONCLUSTERED INDEX [IX_ReportHistory_Modified_DEL] ON [dbo].[IzendaReportHistory]
 (
@@ -3635,7 +3635,7 @@ CREATE NONCLUSTERED INDEX [IX_ReportHistory_Modified_DEL] ON [dbo].[IzendaReport
 	[Deleted] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_ReportPart_RPT]    Script Date: 7/12/17 11:06:45 AM ******/
+/****** Object:  Index [IX_ReportPart_RPT]    Script Date: 5/6/2020 14:00:00 PM ******/
 IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[IzendaReportPart]') AND name = N'IX_ReportPart_RPT')
 CREATE NONCLUSTERED INDEX [IX_ReportPart_RPT] ON [dbo].[IzendaReportPart]
 (
@@ -3645,7 +3645,7 @@ GO
 SET ANSI_PADDING ON
 
 GO
-/****** Object:  Index [IX_IzendaUser]    Script Date: 7/12/17 11:06:45 AM ******/
+/****** Object:  Index [IX_IzendaUser]    Script Date: 5/6/2020 14:00:00 PM ******/
 IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[IzendaUser]') AND name = N'IX_IzendaUser')
 CREATE NONCLUSTERED INDEX [IX_IzendaUser] ON [dbo].[IzendaUser]
 (
