@@ -1,33 +1,33 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <title>Izenda Login / Logout</title>
+    <head>
+        <title>Izenda Login / Logout</title>
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <script>
-        function checkLoginStatus() {
-            var loginbtn = document.getElementById("loginbtn");
-            var izendaContent = document.getElementById("izendaContent");
-            var token = localStorage.getItem("token");
+        <script>
+            function checkLoginStatus() {
+                var loginbtn = document.getElementById("loginbtn");
+                var izendaContent = document.getElementById("izendaContent");
+                var token = localStorage.getItem("token");
 
-            // for debugging
-            console.log(token);
-            console.log(loginbtn);
-            console.log(izendaContent);
+                // for debugging
+                console.log(token);
+                console.log(loginbtn);
+                console.log(izendaContent);
 
-            // prevent clicking izenda button
-            if (token == null) {
-                izendaContent.style.pointerEvents = "none";
-                izendaContent.style.opacity = "0.6";
+                // prevent clicking izenda button
+                if (token == null) {
+                    izendaContent.style.pointerEvents = "none";
+                    izendaContent.style.opacity = "0.6";
+                }
             }
-        }
-    </script>
-</head>
+        </script>
+    </head>
 
     <body onload="checkLoginStatus()">
         <nav class="navbar navbar-inverse" style="border-radius:0 !important;">
@@ -100,7 +100,6 @@
                             localStorage.setItem('token', response["token"]);
                             console.log(localStorage.getItem('token'));
 
-                            // TODO: Check this with Nikki
                             //The below lines used cookies to store the token
                             //document.cookie = "token";
                             //console.log(document.cookie);

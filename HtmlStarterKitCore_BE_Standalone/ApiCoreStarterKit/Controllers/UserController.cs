@@ -16,10 +16,7 @@ namespace ApiCoreStarterKit.Controllers
         #endregion
 
         #region CTOR
-        public UserController(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+        public UserController(IConfiguration configuration) => _configuration = configuration;
         #endregion
 
         #region Methods
