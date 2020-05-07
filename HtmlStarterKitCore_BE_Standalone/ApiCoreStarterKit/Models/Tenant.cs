@@ -4,6 +4,7 @@
     {
         #region Properties
         public string Id { get; }
+
         public string Name { get; }
         #endregion
 
