@@ -79,7 +79,7 @@ namespace ApiCoreStarterKit.IzendaBoundary
         //Support to convert RSA key from PEM to XML, currently RSACryptoServiceProvider only support XML format.
         private static System.Security.Cryptography.RSAParameters ConvertPemToXmlFormat(string privateKey)
         {
-            var privateKeyBits = System.Convert.FromBase64String(privateKey);
+            var privateKeyBits = Convert.FromBase64String(privateKey);
 
             var rsaParams = new System.Security.Cryptography.RSAParameters();
 

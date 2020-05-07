@@ -7,7 +7,6 @@ using System.Web.Http;
 
 namespace ApiCoreStarterKit.Controllers
 {
-
     [RoutePrefix("api/user")]
     public class UserController : Controller
     {
@@ -36,7 +35,13 @@ namespace ApiCoreStarterKit.Controllers
                 return null;
 
             // Login success, encrypt and send token
-            var user = new UserInfo { UserName = email, TenantUniqueName = tenant, Password = password };
+            var user = new UserInfo 
+            { 
+                UserName = email, 
+                TenantUniqueName = tenant, 
+                Password = password 
+            };
+
             var token = IzendaBoundary.IzendaTokenAuthorization.GetToken(user);
 
             return Json(new { token });
