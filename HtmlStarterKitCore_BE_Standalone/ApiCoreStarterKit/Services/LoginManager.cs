@@ -71,7 +71,6 @@ namespace ApiCoreStarterKit.Services
         private IEnumerable<UserInfo> GetUserList(string username)
         {
             var users = new List<UserInfo>();
-            var tenantInfoList = GetTenantInfoList();
 
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -102,33 +101,6 @@ namespace ApiCoreStarterKit.Services
             }
 
             return users;
-        }
-
-        private IEnumerable<TenantInfo> GetTenantInfoList()
-        {
-            var tenants = new List<TenantInfo>();
-
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var queryString = $"SELECT Id, Tenant_Id, UserName FROM ApplicationUsers;";
-
-                var command = new SqlCommand(queryString, connection);
-                command.Connection.Open();
-                var reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    tenants.Add(new TenantInfo
-                    {
-                        Id = reader["Id"].ToString(),
-                        TenantId = reader["Tenant_Id"].ToString(),
-                        Name = reader["UserName"].ToString()
-                    });
-                }
-                reader.Close();
-            }
-
-            return tenants;
         }
         #endregion
     }
