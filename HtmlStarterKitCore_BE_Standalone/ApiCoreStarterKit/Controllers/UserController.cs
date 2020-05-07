@@ -3,6 +3,7 @@ using ApiCoreStarterKit.Services;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System.Linq;
 using System.Web.Http;
 
 namespace ApiCoreStarterKit.Controllers
@@ -24,10 +25,11 @@ namespace ApiCoreStarterKit.Controllers
         [System.Web.Http.Route("GenerateToken")]
         public JsonResult GenerateToken(string tenant, string email, string password)
         {
-            var connectionString = _configuration.GetConnectionString("DefaultConnection");
+            var defaultConnectionString = _configuration.GetConnectionString("DefaultConnection");
+            var configConnectionString = _configuration.GetConnectionString("ConfigConnection");
 
             // Check if valid login from IzendaUser table
-            var loginManager = new LoginManager(connectionString);
+            var loginManager = new LoginManager(defaultConnectionString, configConnectionString);
             var success = loginManager.ValidateLogin(email, password, tenant);
 
             // Login failed
@@ -41,6 +43,11 @@ namespace ApiCoreStarterKit.Controllers
                 TenantUniqueName = tenant, 
                 Password = password 
             };
+
+            // Check activation status - this is an optional part. You can remove this
+            var systemDBUser = loginManager.ConfigDBUsers.FirstOrDefault(u => u.UserName == user.UserName && u.TenantName == user.TenantUniqueName);
+            if (systemDBUser != null && !systemDBUser.IsActive)
+                return null;
 
             var token = IzendaBoundary.IzendaTokenAuthorization.GetToken(user);
 

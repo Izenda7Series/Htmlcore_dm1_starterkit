@@ -1,5 +1,4 @@
 ﻿using ApiCoreStarterKit.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -12,26 +11,39 @@ namespace ApiCoreStarterKit.Services
     public class LoginManager
     {
         #region Variables
-        private readonly string _connectionString;
+        private readonly string _defaultConnectionString;
 
-        private List<Tenant> _tenantNameList = new List<Tenant>();
+        private readonly string _configConnectionString;
+
+        // we don't have to expose this. Encapsulate
+        private readonly List<Tenant> _tenantNameList = new List<Tenant>();
+        #endregion
+
+        #region Properties
+        public List<ConfigDBUser> ConfigDBUsers { get; } = new List<ConfigDBUser>();
         #endregion
 
         #region CTOR
-        public LoginManager(string connectionString)
+        public LoginManager(string defaultConnectionString, string configConnectionString)
         {
-            _connectionString = connectionString;
+            _defaultConnectionString = defaultConnectionString;
 
             // It is a better idea to create a list of tenant from tenants table 
             // This list is immutable and does not have to be created everytime for looking up the tenant name
-            GetTenantNameList(); 
+            GetTenantNameList();
+
+            _configConnectionString = configConnectionString;
+
+            // This is an optional. In configuration DB, there is a possiblity that the user is not active status
+            // If so, we should set the current login status as false
+            GetConfigDBUserList(); 
         }
         #endregion
 
         #region Methods
         private void GetTenantNameList()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(_defaultConnectionString))
             {
                 var queryString = $"SELECT Id, Name FROM Tenants;";
 
@@ -41,9 +53,32 @@ namespace ApiCoreStarterKit.Services
 
                 while (reader.Read())
                 {
-                    var tenant = new Tenant(reader["Id"]?.ToString() ?? string.Empty , reader["Name"].ToString() ?? string.Empty);
-                   
+                    var tenant = new Tenant(reader["Id"]?.ToString() ?? string.Empty, reader["Name"].ToString() ?? string.Empty);
+
                     _tenantNameList.Add(tenant);
+                }
+                reader.Close();
+            }
+        }
+
+        private void GetConfigDBUserList()
+        {
+            using (var connection = new SqlConnection(_configConnectionString))
+            {
+                var queryString = $"SELECT UserName, FirstName, Active FROM IzendaUser;";
+
+                var command = new SqlCommand(queryString, connection);
+                command.Connection.Open();
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var configDBUser = new ConfigDBUser(
+                        reader["UserName"]?.ToString() ?? string.Empty,
+                        reader["FirstName"]?.ToString() ?? string.Empty,
+                        (bool)reader["Active"]);
+
+                    ConfigDBUsers.Add(configDBUser);
                 }
                 reader.Close();
             }
@@ -72,7 +107,7 @@ namespace ApiCoreStarterKit.Services
         {
             var users = new List<UserInfo>();
 
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(_defaultConnectionString))
             {
                 var queryString = $"SELECT UserName, PasswordHash, Tenant_Id FROM ApplicationUsers WHERE UserName = '{username}';";
 
