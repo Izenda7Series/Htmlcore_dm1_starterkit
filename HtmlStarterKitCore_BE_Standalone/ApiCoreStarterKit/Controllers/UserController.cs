@@ -7,7 +7,6 @@ using System.Web.Http;
 
 namespace ApiCoreStarterKit.Controllers
 {
-
     [RoutePrefix("api/user")]
     public class UserController : Controller
     {
@@ -25,10 +24,10 @@ namespace ApiCoreStarterKit.Controllers
         [System.Web.Http.Route("GenerateToken")]
         public JsonResult GenerateToken(string tenant, string email, string password)
         {
-            var connectionString = _configuration.GetConnectionString("DefaultConnection");
+            var defaultConnectionString = _configuration.GetConnectionString("DefaultConnection");
 
             // Check if valid login from IzendaUser table
-            var loginManager = new LoginManager(connectionString);
+            var loginManager = new LoginManager(defaultConnectionString);
             var success = loginManager.ValidateLogin(email, password, tenant);
 
             // Login failed
@@ -36,7 +35,13 @@ namespace ApiCoreStarterKit.Controllers
                 return null;
 
             // Login success, encrypt and send token
-            var user = new UserInfo { UserName = email, TenantUniqueName = tenant, Password = password };
+            var user = new UserInfo 
+            { 
+                UserName = email, 
+                TenantUniqueName = tenant, 
+                Password = password 
+            };
+
             var token = IzendaBoundary.IzendaTokenAuthorization.GetToken(user);
 
             return Json(new { token });

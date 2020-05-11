@@ -11,37 +11,68 @@ namespace ApiCoreStarterKit.Services
     public class LoginManager
     {
         #region Variables
-        private readonly string _connectionString;
+        private readonly string _defaultConnectionString;
+
+        // we don't have to expose this. Encapsulate
+        private readonly List<Tenant> _tenantNameList = new List<Tenant>();
         #endregion
 
         #region CTOR
-        public LoginManager(string connString) => _connectionString = connString;
+        public LoginManager(string defaultConnectionString)
+        {
+            _defaultConnectionString = defaultConnectionString;
+
+            // It is a better idea to create a list of tenant from tenants table 
+            // This list is immutable and does not have to be created everytime for looking up the tenant name
+            GetTenantNameList();
+        }
         #endregion
 
         #region Methods
+        private void GetTenantNameList()
+        {
+            using (var connection = new SqlConnection(_defaultConnectionString))
+            {
+                var queryString = $"SELECT Id, Name FROM Tenants;";
+
+                var command = new SqlCommand(queryString, connection);
+                command.Connection.Open();
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var tenant = new Tenant(reader["Id"]?.ToString() ?? string.Empty, reader["Name"].ToString() ?? string.Empty);
+
+                    _tenantNameList.Add(tenant);
+                }
+                reader.Close();
+            }
+        }
+
         public bool ValidateLogin(string username, string password, string tenant)
         {
-            var users = GetPotentialUsers(username);
+            var users = GetUserList(username);
 
             // invalid user input
-            if (!users.Any()) { return false; }
+            if (!users.Any())
+                return false; 
 
             // find specific user by tenant
             var currentUser = users.FirstOrDefault(u => u.TenantUniqueName == tenant);
 
             // no matching user + tenant found
-            if (currentUser == null) { return false; }
+            if (currentUser == null)
+                return false;
 
             // check if password matches
             return password?.Equals(IzendaBoundary.IzendaTokenAuthorization.GetPassword(currentUser.Password)) ?? false;
         }
 
-        private IEnumerable<UserInfo> GetPotentialUsers(string username)
+        private IEnumerable<UserInfo> GetUserList(string username)
         {
             var users = new List<UserInfo>();
-            var tenants = GetTenants();
 
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(_defaultConnectionString))
             {
                 var queryString = $"SELECT UserName, PasswordHash, Tenant_Id FROM ApplicationUsers WHERE UserName = '{username}';";
 
@@ -59,13 +90,10 @@ namespace ApiCoreStarterKit.Services
                         Password = reader["PasswordHash"].ToString()
                     };
 
-                    if (string.IsNullOrEmpty(tenantId)) // is system level
+                    if (string.IsNullOrEmpty(tenantId)) // if tenantId is null, it is system level
                         user.TenantUniqueName = null;
-                    else // is tenant level
-                    {
-                        var tenant = tenants.FirstOrDefault(t => t.Id == tenantId);
-                        user.TenantUniqueName = tenant?.TenantId ?? string.Empty;
-                    }
+                    else // otherwise tenant level
+                        user.TenantUniqueName = _tenantNameList.FirstOrDefault(t => t.Id == tenantId)?.Name ?? null;
 
                     users.Add(user);
                 }
@@ -73,33 +101,6 @@ namespace ApiCoreStarterKit.Services
             }
 
             return users;
-        }
-
-        private IEnumerable<TenantInfo> GetTenants()
-        {
-            var tenants = new List<TenantInfo>();
-
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var queryString = $"SELECT Id, Tenant_Id, UserName FROM ApplicationUsers;";
-
-                var command = new SqlCommand(queryString, connection);
-                command.Connection.Open();
-                var reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    tenants.Add(new TenantInfo
-                    {
-                        Id = reader["Id"].ToString(),
-                        TenantId = reader["Tenant_Id"].ToString(),
-                        Name = reader["UserName"].ToString()
-                    });
-                }
-                reader.Close();
-            }
-
-            return tenants;
         }
         #endregion
     }

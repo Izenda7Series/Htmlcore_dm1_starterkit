@@ -8,7 +8,7 @@ namespace ApiCoreStarterKit.IzendaBoundary
     {
         #warning Change this key!!
         private const string KEY = "THISISKEY1234567"; //must be at least 16 characters long (128 bits)
-       
+
         #region Methods
         /// <summary>
         /// Generate token from UserInfo. Userinfo will be encrypted before sending to Izenda.
@@ -79,7 +79,7 @@ namespace ApiCoreStarterKit.IzendaBoundary
         //Support to convert RSA key from PEM to XML, currently RSACryptoServiceProvider only support XML format.
         private static System.Security.Cryptography.RSAParameters ConvertPemToXmlFormat(string privateKey)
         {
-            var privateKeyBits = System.Convert.FromBase64String(privateKey);
+            var privateKeyBits = Convert.FromBase64String(privateKey);
 
             var rsaParams = new System.Security.Cryptography.RSAParameters();
 
@@ -124,14 +124,14 @@ namespace ApiCoreStarterKit.IzendaBoundary
             byte highbyte = 0x00;
             int count = 0;
             bt = binr.ReadByte();
+
             if (bt != 0x02)
                 return 0;
             bt = binr.ReadByte();
 
             if (bt == 0x81)
                 count = binr.ReadByte();
-            else
-                if (bt == 0x82)
+            else if (bt == 0x82)
             {
                 highbyte = binr.ReadByte();
                 lowbyte = binr.ReadByte();
@@ -150,7 +150,7 @@ namespace ApiCoreStarterKit.IzendaBoundary
             binr.BaseStream.Seek(-1, System.IO.SeekOrigin.Current);
 
             return count;
-        } 
+        }
         #endregion
     }
 }

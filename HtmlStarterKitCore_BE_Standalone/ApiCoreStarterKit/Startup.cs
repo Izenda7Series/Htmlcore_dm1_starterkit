@@ -9,14 +9,11 @@ namespace ApiCoreStarterKit
     public class Startup
     {
         #region Properties
-        public IConfiguration Configuration { get; } 
+        public IConfiguration Configuration { get; }
         #endregion
 
         #region CTOR
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        public Startup(IConfiguration configuration) => Configuration = configuration;
         #endregion
 
         #region Methods
