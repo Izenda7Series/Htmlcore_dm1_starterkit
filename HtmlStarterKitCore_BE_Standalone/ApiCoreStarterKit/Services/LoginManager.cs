@@ -13,30 +13,18 @@ namespace ApiCoreStarterKit.Services
         #region Variables
         private readonly string _defaultConnectionString;
 
-        private readonly string _configConnectionString;
-
         // we don't have to expose this. Encapsulate
         private readonly List<Tenant> _tenantNameList = new List<Tenant>();
         #endregion
 
-        #region Properties
-        public List<ConfigDBUser> ConfigDBUsers { get; } = new List<ConfigDBUser>();
-        #endregion
-
         #region CTOR
-        public LoginManager(string defaultConnectionString, string configConnectionString)
+        public LoginManager(string defaultConnectionString)
         {
             _defaultConnectionString = defaultConnectionString;
 
             // It is a better idea to create a list of tenant from tenants table 
             // This list is immutable and does not have to be created everytime for looking up the tenant name
             GetTenantNameList();
-
-            _configConnectionString = configConnectionString;
-
-            // This is an optional. In configuration DB, there is a possiblity that the user is not active status
-            // If so, we should set the current login status as false
-            GetConfigDBUserList(); 
         }
         #endregion
 
@@ -56,29 +44,6 @@ namespace ApiCoreStarterKit.Services
                     var tenant = new Tenant(reader["Id"]?.ToString() ?? string.Empty, reader["Name"].ToString() ?? string.Empty);
 
                     _tenantNameList.Add(tenant);
-                }
-                reader.Close();
-            }
-        }
-
-        private void GetConfigDBUserList()
-        {
-            using (var connection = new SqlConnection(_configConnectionString))
-            {
-                var queryString = $"SELECT UserName, FirstName, Active FROM IzendaUser;";
-
-                var command = new SqlCommand(queryString, connection);
-                command.Connection.Open();
-                var reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    var configDBUser = new ConfigDBUser(
-                        reader["UserName"]?.ToString() ?? string.Empty,
-                        reader["FirstName"]?.ToString() ?? string.Empty,
-                        (bool)reader["Active"]);
-
-                    ConfigDBUsers.Add(configDBUser);
                 }
                 reader.Close();
             }
