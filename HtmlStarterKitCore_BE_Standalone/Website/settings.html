@@ -1,24 +1,17 @@
+
 <!DOCTYPE html>
 <html>
 
 <head>
-  <title>HTML Embedded Izenda Example Page</title>
+  <title>Izenda Settings</title>
 
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="/izenda/izenda-ui.css" rel="stylesheet">
-
-  <style>
-    #izenda-root {
-      width: 100%;
-      height: 100vh;
-      min-height: 100vh;
-    }
-  </style>
 </head>
 
 <body>
@@ -29,8 +22,6 @@
   </script>
 
   <div id="header"></div>
-  
-  <div id="izenda-root"></div>
 
   <script type="text/javascript" src=""></script>
   <script type="text/javascript" src="/izenda/izenda_common.js"></script>
@@ -40,8 +31,7 @@
   <script type="text/javascript" src="/izenda.integrate.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
-      DoIzendaConfig();
-      izendaInit();
+      izendaInitSetting();
     });
   </script>
 </body>
