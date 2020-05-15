@@ -1,92 +1,60 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
-    <head>
-         <title>Izenda HTML kit Home</title>
-        
-         <meta charset="utf-8" />
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-         <script>
-             function checkLoginStatus() {
-                 var izendaContent = document.getElementById("izendaContent");
-                 var token = localStorage.getItem("token");
+<head>
+  <title>Home Page</title>
 
-                 var loginText = document.getElementById("loginText");
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/Content/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="/Content/custom.css" type="text/css" />
+</head>
 
-                 // for debugging
-                 console.log(token);
-          
-                 if (token == null) {
-                     izendaContent.style.pointerEvents = "none";
-                     izendaContent.style.opacity = "0.6";
-                     loginText.innerHTML = "Login";
-                 }
-                 else {
-                     loginText.innerHTML = "Logout";
-                 }
-             }
-        </script>
-    </head>
+<body>
+  <script>
+    $(function() {
+      $('#header').load('izenda-header.html');
+    });
+  </script>
 
-    <body onload="checkLoginStatus()">
-        <nav class="navbar navbar-inverse" style="border-radius:0 !important;">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
+  <div id="header"></div>
 
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li id="izendaContent"><a href="izenda.html">Izenda</a></li>
-                        <li class="nav-item" style="cursor: pointer;"><a id="loginText"></a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+  <div class="izenda-container body-content">
+    <div class="jumbotron izenda-header">
+      <h1>Izenda HTML Core DM1 Starterkit</h1>
+      <p class="lead">This starter kit will help your development team quickly and easily embed Izenda into your application.</p>
+    </div>
 
-        <script>
-            $(".nav-item").on("click", function () {
-                var token = localStorage.getItem("token");
+    <div class="row izenda-base-color">
+      <div class="col-md-4">
+        <h2>User Integration</h2>
+        <p>Easily integrate your users, roles, and tenants with Izenda. </p>
+        <p><a class="btn btn-primary" href="https://www.izenda.com/docs/dev/.embedding_izenda.html#embedding-izenda-into-your-application" role="button">Learn more »</a></p>
+      </div>
 
-                if (token != null) {
-                    localStorage.clear();
-                }
-                window.location.href = "/login.html";
-            });
-        </script>
+      <div class="col-md-4">
+        <h2>Hidden Filters</h2>
+        <p>Our flexible API allows you to apply row-level security to your data sources. Filter data by user, role, tenant, or your own custom logic. </p>
+        <p><a class="btn btn-primary" href="https://www.izenda.com/docs/dev/ref_iadhocextension.html?filter#sethiddenfilters" role="button">Learn more »</a></p>
+      </div>
 
-        <div class="jumbotron">
-            <h1>Izenda HTML Core DM1 Starterkit</h1>
-            <h3>This starter kit will help your development team quickly and easily embed Izenda into your application.</h3>
-        </div>
+      <div class="col-md-4">
+        <h2>Security</h2>
+        <p>Review best practices to help ensure a safe and secure deployment of Izenda.</p>
+        <p><a class="btn btn-primary" href="https://www.izenda.com/docs/ui/doc_security_recommendations.html" role="button">Learn more »</a></p>
+      </div>
+    </div>
+  </div>
 
-        <!--TODO: Update links-->
-        <div>
-            <div class="col-md-4">
-                <h2>User Integration</h2>
-                <p>Easily integrate your users, roles, and tenants with Izenda. </p>
-                <p><a class="btn btn-primary" href="https://www.izenda.com/docs/dev/api_backend_integration.html" role="button">Learn more »</a></p>
-            </div>
+  <hr />
+  <footer>
+    <p>&copy; <script type="text/javascript">
+        document.write(new Date().getFullYear());
+      </script> - Izenda Integrated BI Platform</p>
+  </footer>
+</body>
 
-            <div class="col-md-4">
-                <h2>Hidden Filters</h2>
-                <p>Our flexible API allows you to apply row-level security to your data sources. Filter data by user, role, tenant, or your own custom logic. </p>
-                <p><a class="btn btn-primary" href="https://www.izenda.com/docs/dev/code_modifying_user_access_token.html" role="button">Learn more »</a></p>
-            </div>
-
-            <div class="col-md-4">
-                <h2>Security</h2>
-                <p>Review best practices to help ensure a safe and secure deployment of Izenda.</p>
-                <p><a class="btn btn-primary" href="https://www.izenda.com/docs/ref/models/_security.html" role="button">Learn more »</a></p>
-            </div>
-        </div>
-    </body>
 </html>

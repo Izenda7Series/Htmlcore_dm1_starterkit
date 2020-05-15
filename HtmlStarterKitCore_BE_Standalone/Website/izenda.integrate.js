@@ -83,18 +83,26 @@ var izendaInitReport = function () {
 };
 
 var izendaInitSetting = function () {
+  //function successFunc(data, status) {
+    //    console.info(data);
+    //    var currentUserContext = {
+    //        token: data.token
+    //    };
 
-    function successFunc(data, status) {
-        console.info(data);
-        var currentUserContext = {
-            token: data.token
-        };
+    //    IzendaSynergy.setCurrentUserContext(currentUserContext);
+    //    IzendaSynergy.renderSettingPage(document.getElementById('izenda-root'));
+    //}
 
-        IzendaSynergy.setCurrentUserContext(currentUserContext);
-        IzendaSynergy.renderSettingPage(document.getElementById('izenda-root'));
-    }
+    //this.DoRender(successFunc);
 
-    this.DoRender(successFunc);
+    var tokenFromStorage = localStorage.getItem('token');
+    var currentUserContext = {
+        token: tokenFromStorage
+    };
+
+    console.log(currentUserContext);
+    IzendaSynergy.setCurrentUserContext(currentUserContext);
+    IzendaSynergy.renderSettingPage(document.getElementById('izenda-root'));
 };
 
 var izendaInitReportPart = function (reportParts) {
