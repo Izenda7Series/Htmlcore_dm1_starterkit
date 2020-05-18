@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>HTML Embedded Izenda Example Page</title>
+  <title>Izenda Reports Viewer</title>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,9 +30,9 @@
 
   <div id="header"></div>
 
-  <!-- inline style for margin 50 pixel for nav-bar -->
   <div id="izenda-root" style="margin-top: 50px;"></div>
 
+  <!-- Hard coded value is required for report viewer test. Please check your [IzendaReport] table and copy your report id to be displayed -->
   <script type="text/javascript" src=""></script>
   <script type="text/javascript" src="/izenda/izenda_common.js"></script>
   <script type="text/javascript" src="/izenda/izenda_locales.js"></script>
@@ -42,9 +42,28 @@
   <script type="text/javascript">
     $(document).ready(function() {
       DoIzendaConfig();
-      izendaInit();
+      izendaInitReportPartDemo();
     });
   </script>
+  <style>
+       .report-part-chart {
+           float: left;
+           width: 40%;
+           height:  40%;
+           margin-left: 20px;
+           margin-top: 20px;
+           background-color: white;
+       }
+
+       .report-part-grid {
+           float: left;
+           width: 40%;
+           height:  50%;
+           margin-left: 20px;
+           margin-top: 20px;
+           background-color: white;
+       }
+   </style>
 </body>
 
 </html>
