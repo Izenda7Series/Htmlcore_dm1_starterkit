@@ -10,6 +10,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="/izenda/izenda-ui.css" rel="stylesheet">
+  <style>
+    #izenda-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+    }
+  </style>
 </head>
 
 <body>
@@ -48,12 +55,16 @@
     </div>
   </div>
 
-  <!-- <hr />
-  <footer>
-    <p>&copy; <script type="text/javascript">
-        document.write(new Date().getFullYear());
-      </script> - Izenda Integrated BI Platform</p>
-  </footer> -->
+  <hr />
+  <footer id="izenda-footer">
+    <div>
+        &copy;
+        <span id="copyright">
+            <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+        </span>
+        Izenda Integrated BI Platform
+    </div>
+  </footer>
 </body>
 
 </html>
