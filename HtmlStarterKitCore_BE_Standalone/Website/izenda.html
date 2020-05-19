@@ -1,51 +1,51 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
-  <title>HTML Embedded Izenda Example Page</title>
+    <title>HTML Embedded Izenda Example Page</title>
 
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="/izenda/izenda-ui.css" rel="stylesheet">
-  <link href="Content/custom.css" rel="stylesheet"  />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="/izenda/izenda-ui.css" rel="stylesheet">
+    <link href="Content/custom.css" rel="stylesheet" />
 
-  <style>
-    #izenda-root {
-      width: 100%;
-      height: 100vh;
-      min-height: 100vh;
-    }
-  </style>
+    <style>
+        #izenda-root {
+            width: 100%;
+            height: 100vh;
+            min-height: 100vh;
+        }
+    </style>
 </head>
 
 <body>
-  <script>
-    $(function() {
-      $('#header').load('izenda-navbar.html');
-    });
-  </script>
+    <script>
+        $(function () {
+            $('#header').load('izenda-navbar.html');
+        });
+    </script>
 
-  <div id="header"></div>
+    <div id="header"></div>
 
-  <!-- inline style for margin 50 pixel for nav-bar -->
-  <div id="izenda-root"></div>
+    <!-- inline style for margin 50 pixel for nav-bar -->
+    <div id="izenda-root"></div>
 
-  <script type="text/javascript" src=""></script>
-  <script type="text/javascript" src="/izenda/izenda_common.js"></script>
-  <script type="text/javascript" src="/izenda/izenda_locales.js"></script>
-  <script type="text/javascript" src="/izenda/izenda_vendors.js"></script>
-  <script type="text/javascript" src="/izenda/izenda_ui.js"></script>
-  <script type="text/javascript" src="/izenda.integrate.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      DoIzendaConfig();
-      izendaInit();
-    });
-  </script>
+    <script type="text/javascript" src=""></script>
+    <script type="text/javascript" src="/izenda/izenda_common.js"></script>
+    <script type="text/javascript" src="/izenda/izenda_locales.js"></script>
+    <script type="text/javascript" src="/izenda/izenda_vendors.js"></script>
+    <script type="text/javascript" src="/izenda/izenda_ui.js"></script>
+    <script type="text/javascript" src="/izenda.integrate.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            DoIzendaConfig();
+            izendaInit();
+        });
+    </script>
 </body>
 
 </html>

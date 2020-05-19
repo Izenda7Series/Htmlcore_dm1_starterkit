@@ -42,20 +42,16 @@ namespace ApiCoreStarterKit
             {
                 app.UseDeveloperExceptionPage();
             }
-            //app.UseStaticFiles();
-            //app.UseStaticFiles(new StaticFileOptions()
-            //{
-            //    FileProvider = new PhysicalFileProvider(Path.Combine(env.WebRootPath, "Content")),
-            //    RequestPath = "/api/content"
-            //});
+           
             app.UseMvc(routes =>
             {
-                routes.MapRoute("ReportPart", "izenda/viewer/reportpart/{id}", defaults: new { controller = "Home", action = "ReportPart" });
                 routes.MapRoute(
                     name: "default",
                     template: "api/{controller=Home}/{action=Index}/{id?}");
             });
+
             app.UseCors("AllowOrigin");
+
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("<h1>Izenda System Settings Landing Page</h1>");
