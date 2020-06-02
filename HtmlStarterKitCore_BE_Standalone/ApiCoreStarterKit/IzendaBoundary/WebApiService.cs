@@ -1,30 +1,42 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Cors;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace ApiCoreStarterKit.IzendaBoundary
 {
-    public class WebApiService
+    public class WebAPIService
     {
-        readonly string _basedUri;
-        private WebApiService(string basedUri)
+        #region Variables
+        private readonly string _basedUri; 
+        private static WebAPIService _instance;
+        #endregion
+
+        #region CTOR
+        private WebAPIService(string basedUri)
         {
             _basedUri = basedUri;
         }
+        #endregion
 
-        private static WebApiService _instance;
-
-        public static WebApiService Instance
+        #region Methods
+        public static WebAPIService Instance
         {
-            get { return _instance ?? (_instance = new WebApiService(System.Configuration.ConfigurationManager.AppSettings["IzendaApiUrl"])); }
+            //get { return _instance ?? (_instance = new WebAPIService(System.Configuration.ConfigurationManager.AppSettings["IzendaApiUrl"])); }
+
+            get 
+            { 
+                return _instance ?? 
+                    (_instance = new WebAPIService("http://localhost:6360/api/")); // TODO: fix this. Get this from appsettings json
+            }
         }
 
+        [EnableCors("AllowOrigin")]
         public async Task<T> GetAsync<T>(string action, string authToken = null, Dictionary<string, object> parameters = null)
         {
             using (var httpClient = GetHttpClient(authToken))
@@ -49,7 +61,6 @@ namespace ApiCoreStarterKit.IzendaBoundary
                 }
                 return default(T);
             }
-
         }
 
         public async Task PostAsync<T>(string action, T data, string authToken = null)
@@ -58,6 +69,7 @@ namespace ApiCoreStarterKit.IzendaBoundary
             {
                 var url = BuildActionUri(action);
                 var httpResponse = await httpClient.PostAsJsonAsync(url, data);
+               
                 try
                 {
                     httpResponse.EnsureSuccessStatusCode();
@@ -69,12 +81,17 @@ namespace ApiCoreStarterKit.IzendaBoundary
             }
         }
 
-        public async Task<TResult> PostReturnValueAsync<TResult, T>(string action, T data, string authToken = null)
+        /// <summary>
+        /// POST Tenant / User
+        /// Return result as boolean value
+        /// </summary>
+        public async Task<bool> PostReturnBooleanAsync<T>(string action, T data, string authToken = null)
         {
             using (var httpClient = GetHttpClient(authToken))
             {
                 var url = BuildActionUri(action);
                 var httpResponse = await httpClient.PostAsJsonAsync(url, data);
+
                 try
                 {
                     httpResponse.EnsureSuccessStatusCode();
@@ -84,9 +101,34 @@ namespace ApiCoreStarterKit.IzendaBoundary
                     throw new WebApiException(url, httpResponse.StatusCode, ex);
                 }
 
-                string responseJson = await httpResponse.Content.ReadAsStringAsync();
+                var responseJson = await httpResponse.Content.ReadAsStringAsync();
+                var result = (bool)JObject.Parse(responseJson)["success"];
+
+                return result;
+            }
+        }
+
+        public async Task<TResult> PostReturnValueAsync<TResult, T>(string action, T data, string authToken = null)
+        {
+            using (var httpClient = GetHttpClient(authToken))
+            {
+                var url = BuildActionUri(action);
+                var httpResponse = await httpClient.PostAsJsonAsync(url, data);
+                
+                try
+                {
+                    httpResponse.EnsureSuccessStatusCode();
+                }
+                catch (Exception ex)
+                {
+                    throw new WebApiException(url, httpResponse.StatusCode, ex);
+                }
+
+                var responseJson = await httpResponse.Content.ReadAsStringAsync();
+
                 if (responseJson != "null")
                     return JsonConvert.DeserializeObject<TResult>(responseJson);
+
                 return default(TResult);
             }
         }
@@ -164,19 +206,25 @@ namespace ApiCoreStarterKit.IzendaBoundary
             }
 
             return stringBuilder.ToString();
-        }
+        } 
+        #endregion
     }
 
     public class WebApiException : Exception
     {
+        #region Properties
         public string RequestedUrl { get; private set; }
-        public System.Net.HttpStatusCode StatusCode { get; private set; }
 
+        public System.Net.HttpStatusCode StatusCode { get; private set; }
+        #endregion
+
+        #region CTOR
         public WebApiException(string requestedUrl, System.Net.HttpStatusCode statusCode, Exception innerException)
-            : base("Error occured when calling WebApi", innerException)
+          : base("Error occured when calling WebApi", innerException)
         {
             RequestedUrl = requestedUrl;
             StatusCode = statusCode;
-        }
+        } 
+        #endregion
     }
 }

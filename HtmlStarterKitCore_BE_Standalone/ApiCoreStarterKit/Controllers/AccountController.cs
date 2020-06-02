@@ -1,4 +1,5 @@
 ﻿using ApiCoreStarterKit.Models;
+using Mvc5StarterKit.IzendaBoundary;
 using System;
 using System.Web.Http;
 
@@ -12,7 +13,7 @@ namespace ApiCoreStarterKit.Controllers
         [Route("validateIzendaAuthToken")]
         public UserInfo ValidateIzendaAuthToken(string access_token)
         {
-            var userInfo = IzendaBoundary.IzendaTokenAuthorization.GetUserInfo(access_token);
+            var userInfo = IzendaTokenAuthorization.GetUserInfo(access_token);
             Console.WriteLine(userInfo);
 
             return userInfo;
@@ -22,8 +23,8 @@ namespace ApiCoreStarterKit.Controllers
         [Route("GetIzendaAccessToken")]
         public IHttpActionResult GetIzendaAccessToken(string message)
         {
-            var userInfo = IzendaBoundary.IzendaTokenAuthorization.DecryptIzendaAuthenticationMessage(message);
-            var token = IzendaBoundary.IzendaTokenAuthorization.GetToken(userInfo);
+            var userInfo = IzendaTokenAuthorization.DecryptIzendaAuthenticationMessage(message);
+            var token = IzendaTokenAuthorization.GetToken(userInfo);
 
             return Ok(token);
         } 

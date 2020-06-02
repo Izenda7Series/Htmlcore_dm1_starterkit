@@ -3,6 +3,7 @@ using ApiCoreStarterKit.Services;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Mvc5StarterKit.IzendaBoundary;
 using System.Web.Http;
 
 namespace ApiCoreStarterKit.Controllers
@@ -42,10 +43,10 @@ namespace ApiCoreStarterKit.Controllers
                 Password = password 
             };
 
-            var token = IzendaBoundary.IzendaTokenAuthorization.GetToken(user);
+            var token = IzendaTokenAuthorization.GetToken(user);
 
             return Json(new { token });
-        } 
+        }
         #endregion
     }
 }

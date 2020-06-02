@@ -1,4 +1,5 @@
 ﻿using ApiCoreStarterKit.Models;
+using Mvc5StarterKit.IzendaBoundary;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -65,7 +66,7 @@ namespace ApiCoreStarterKit.Services
                 return false;
 
             // check if password matches
-            return password?.Equals(IzendaBoundary.IzendaTokenAuthorization.GetPassword(currentUser.Password)) ?? false;
+            return password?.Equals(IzendaTokenAuthorization.GetPassword(currentUser.Password)) ?? false;
         }
 
         private IEnumerable<UserInfo> GetUserList(string username)
