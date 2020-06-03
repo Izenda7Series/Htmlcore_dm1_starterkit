@@ -12,16 +12,16 @@ namespace ApiCoreStarterKit.IzendaBoundary
     public static class IzendaUtilities
     {
         #region Methods
-        public static Tenant GetTenantByName(string name, string connectionString)
+        public static TenantInfo GetTenantByName(string name, string connectionString)
         {
             return GetAllTenants(connectionString).FirstOrDefault(t => t.Name == name);
         }
 
-        public static List<Tenant> GetAllTenants(string connectionString)
+        public static List<TenantInfo> GetAllTenants(string connectionString)
         {
             using (var connection = new SqlConnection(connectionString))
             {
-                var _tenantNameList = new List<Tenant>();
+                var _tenantNameList = new List<TenantInfo>();
                 var queryString = $"SELECT * FROM Tenants;";
 
                 var command = new SqlCommand(queryString, connection);
@@ -30,7 +30,7 @@ namespace ApiCoreStarterKit.IzendaBoundary
 
                 while (reader.Read())
                 {
-                    var tenant = new Tenant(reader["Id"]?.ToString() ?? string.Empty, reader["Name"].ToString() ?? string.Empty);
+                    var tenant = new TenantInfo(reader["Id"]?.ToString() ?? string.Empty, reader["Name"].ToString() ?? string.Empty);
 
                     _tenantNameList.Add(tenant);
                 }
@@ -41,7 +41,7 @@ namespace ApiCoreStarterKit.IzendaBoundary
         }
 
         // SAVE tenant into client DB
-        public static async Task SaveTenantAsync(Tenant tenant, string connectionString)
+        public static async Task SaveTenantAsync(TenantInfo tenant, string connectionString)
         {
             using (var connection = new SqlConnection(connectionString))
             {

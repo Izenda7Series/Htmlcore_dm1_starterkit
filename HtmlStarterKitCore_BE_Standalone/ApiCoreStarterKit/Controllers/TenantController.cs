@@ -44,7 +44,7 @@ namespace ApiCoreStarterKit.ApiControllers
                     if (success)
                     {
                         // save a new tenant at user DB
-                        var newTenant = new Tenant() { Name = tenantName };
+                        var newTenant = new TenantInfo() { Name = tenantName };
                         await IzendaUtilities.SaveTenantAsync(newTenant, connectString);
 
                         return CreateEntityResult(true);
@@ -59,7 +59,7 @@ namespace ApiCoreStarterKit.ApiControllers
 
         private JsonResult CreateEntityResult(bool success)
         {
-            var resultMessage = success ? "You have created a tenant successfully" : "You have failed to create a tenant";
+            var resultMessage = success ? "Success" : "Failure";
 
             return Json(new { resultMessage });
         } 

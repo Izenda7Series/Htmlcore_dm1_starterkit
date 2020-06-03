@@ -15,7 +15,7 @@ namespace ApiCoreStarterKit.Services
         private readonly string _defaultConnectionString;
 
         // we don't have to expose this. Encapsulate
-        private readonly List<Tenant> _tenantNameList = new List<Tenant>();
+        private readonly List<TenantInfo> _tenantNameList = new List<TenantInfo>();
         #endregion
 
         #region CTOR
@@ -42,7 +42,7 @@ namespace ApiCoreStarterKit.Services
 
                 while (reader.Read())
                 {
-                    var tenant = new Tenant(reader["Id"]?.ToString() ?? string.Empty, reader["Name"].ToString() ?? string.Empty);
+                    var tenant = new TenantInfo(reader["Id"]?.ToString() ?? string.Empty, reader["Name"].ToString() ?? string.Empty);
 
                     _tenantNameList.Add(tenant);
                 }

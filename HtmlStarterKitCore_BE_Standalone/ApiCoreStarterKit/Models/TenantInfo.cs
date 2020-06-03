@@ -1,6 +1,6 @@
 ﻿namespace ApiCoreStarterKit.Models
 {
-    public class Tenant
+    public class TenantInfo
     {
         #region Properties
         public string Id { get; set; }
@@ -9,10 +9,10 @@
         #endregion
 
         #region CTOR
-        public Tenant()
+        public TenantInfo()
         { }
 
-        public Tenant(string id, string name)
+        public TenantInfo(string id, string name)
         {
             Id = id;
             Name = name;
