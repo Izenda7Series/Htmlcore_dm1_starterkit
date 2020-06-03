@@ -1,0 +1,112 @@
+﻿<head>
+    <title>Create Tenant</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="/izenda/izenda-ui.css" rel="stylesheet">
+    <link href="Content/custom.css" rel="stylesheet" />
+
+    <style>
+        #izenda-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+
+        #izenda-header {
+            color: #1c4e89;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        $(function () {
+            $('#header').load('izenda-navbar.html');
+        });
+    </script>
+
+    <div id="header"></div>
+
+    <div class="container body-content">
+        <h2>Create Tenant</h2>
+
+        <div class="row">
+            <div class="col-md-8">
+                <section id="CreateTenantForm">
+                    <div class="form-horizontal">
+                        <h4>Create a new tenant</h4>
+                        <hr />
+                        <div class="form-group">
+                            <label for="tenantID" class="col-md-2 control-label">Tenant ID</label>
+                            <div class="col-md-10">
+                                <input type="text" name="tenantID" class="form-control" id="tenantID" required="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tenantName" class="col-md-2 control-label"><b>Tenant Name</b></label>
+                            <div class="col-md-10">
+                                <input type="text" name="tenantName" class="form-control" id="tenantName"
+                                       required="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Submit" name="button_sub" id="button_sub"
+                                       class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-4">
+                <section id="tenantIntruction">
+                    <div>
+                        <h4>Further Instruction</h4>
+                        <hr />
+                        <p>
+                            If you want to add "Description" or enable a Module(s) to a newly created tenant, please go
+                            to Settings &#8594 Tenant Setup and update it.
+                        </p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $("#button_sub").click(function () {
+                var createTenantURL = "http://localhost:19657/api/tenant/CreateTenant";
+                var tenantID = document.getElementById("tenantID").value;
+                var tenantName = document.getElementById("tenantName").value;
+
+                // short-handed version of ajax asynchronous call
+                $.getJSON(createTenantURL,
+                    {
+                        tenantID: tenantID,
+                        tenantName: tenantName
+                    },
+                    function (response) {
+                        if (response.resultMessage === "success") {
+                            alert("A tenant has been created successfully");
+                        } else {
+                            alert("Request to create a tenant has been denied");
+                        }
+                    });
+            });
+        });
+    </script>
+    <hr />
+    <footer id="izenda-footer">
+        <div>
+            &copy;
+            <span id="copyright">
+                <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+            </span>
+            Izenda Integrated BI Platform
+        </div>
+    </footer>
+</body>
