@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -15,25 +15,21 @@ namespace ApiCoreStarterKit.IzendaBoundary
     public class WebAPIService
     {
         #region Variables
-        private readonly string _basedUri; 
+        private static readonly string _basedUri;
         private static WebAPIService _instance;
         #endregion
 
         #region CTOR
-        private WebAPIService(string basedUri)
+        static WebAPIService()
         {
-            _basedUri = basedUri;
+            IConfigurationRoot configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
+
+            _basedUri = configuration.GetValue<string>("IzendaApiUrl:ApiUrl");
         }
         #endregion
 
         #region Methods
-        public static WebAPIService Instance
-        {
-            get 
-            { 
-                return _instance ?? (_instance = new WebAPIService("http://localhost:6360/api/")); // TODO: fix this. Get this from appsettings json
-            }
-        }
+        public static WebAPIService Instance => _instance ?? (_instance = new WebAPIService());
 
         [EnableCors("AllowOrigin")]
         public async Task<T> GetAsync<T>(string action, string authToken = null, Dictionary<string, object> parameters = null)
