@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <head>
     <title>Create User</title>
 
@@ -39,10 +40,14 @@
                 }
             });
         });
-
+        
         $(document).ready(function () {
             var getAllTenantsURL = "http://localhost:19657/api/tenant/getTenantList";
             var tenantList = document.getElementById("TenantList");
+
+            $('#CreateUserHeader').html("Create User");
+            $('#createSuccessNotify').hide();
+            $('#createFailureNotify').hide();
 
             $.getJSON(getAllTenantsURL,
                 function (response) {
@@ -60,12 +65,20 @@
     <div id="header"></div>
 
     <div class="container body-content">
-        <h2>Create User</h2>
+        <h2 id="CreateUserHeader">Create User</h2>
+
+        <div class="alert alert-success alert-dismissable" id="createSuccessNotify">
+            <strong>User has been created successfully.</strong>
+        </div>
+
+        <div class="alert alert-danger alert-dismissable" id="createFailureNotify">
+            <strong>Can't create a new user. The user name or id already exists.</strong>
+        </div>
 
         <div class="row">
             <div class="col-md-8">
                 <section id="CreateUserForm">
-                    <div class="form-horizontal">
+                    <form class="form-horizontal">
                         <h4>Create a new user</h4>
                         <hr />
                         <div class="form-group">
@@ -84,7 +97,7 @@
                         <div class="form-group">
                             <label for="UserId" class="col-md-2 control-label">User ID</label>
                             <div class="col-md-10">
-                                <input type="text" name="UserId" class="form-control" id="UserId" required="true">
+                                <input type="email" name="UserId" class="form-control" id="UserId" required="true">
                             </div>
                         </div>
                         <div class="form-group">
@@ -105,7 +118,7 @@
                                     class="btn btn-default" />
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </section>
             </div>
             <div class="col-md-4">
@@ -136,6 +149,9 @@
                 var firstName = document.getElementById("FirstName").value;
                 var lastName = document.getElementById("LastName").value;
 
+                var emailPattern = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$");
+
+                if (emailPattern.test(userId) && userId !== "" && firstName !== "" && lastName !== "")
                 $.getJSON(createUserURL,
                     {
                         isAdmin: isAdmin,
@@ -145,8 +161,17 @@
                         lastName: lastName,
                     },
                     function (response) {
-                        alert(response);
-                    });
+                            if (response.resultMessage === "Success") {
+                                $('#CreateUserHeader').html("");
+                                $('#createSuccessNotify').show();
+                                $('#createFailureNotify').hide();
+                            } else {
+                                $('#CreateUserHeader').html("");
+                                $('#createSuccessNotify').hide();
+                                $('#createFailureNotify').show();
+                            }
+                            $('#button_sub').blur();
+                        }, event.preventDefault());
             });
         });
     </script>

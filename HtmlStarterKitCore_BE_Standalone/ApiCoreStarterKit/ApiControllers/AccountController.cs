@@ -3,7 +3,7 @@ using Mvc5StarterKit.IzendaBoundary;
 using System;
 using System.Web.Http;
 
-namespace ApiCoreStarterKit.Controllers
+namespace ApiCoreStarterKit.ApiControllers
 {
     [RoutePrefix("api/account")]
     public class AccountController : ApiController

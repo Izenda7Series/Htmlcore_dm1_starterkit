@@ -1,4 +1,5 @@
-﻿<head>
+<!DOCTYPE html>
+<head>
     <title>Create Tenant</title>
 
     <meta charset="utf-8" />
@@ -63,13 +64,13 @@
                             <label for="tenantName" class="col-md-2 control-label"><b>Tenant Name</b></label>
                             <div class="col-md-10">
                                 <input type="text" name="tenantName" class="form-control" id="tenantName"
-                                       required="true">
+                                    required="true">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Submit" name="button_sub" id="button_sub"
-                                       class="btn btn-default" />
+                                    class="btn btn-default" />
                             </div>
                         </div>
                     </form>
@@ -91,7 +92,7 @@
     </div>
     <script type="text/javascript">
         $(function () {
-            $("#button_sub").click(function () {
+            $("#button_sub").click(function (event) {
                 var createTenantURL = "http://localhost:19657/api/tenant/CreateTenant";
                 var tenantID = document.getElementById("tenantID").value;
                 var tenantName = document.getElementById("tenantName").value;
@@ -113,7 +114,7 @@
                                 $('#createFailureNotify').show();
                             }
                             $('#button_sub').blur();
-                        });
+                        }, event.preventDefault());
             });
         });
     </script>

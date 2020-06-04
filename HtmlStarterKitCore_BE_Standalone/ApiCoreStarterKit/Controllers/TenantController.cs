@@ -9,10 +9,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace ApiCoreStarterKit.ApiControllers
+namespace ApiCoreStarterKit.Controllers
 {
     [RoutePrefix("api/tenant")]
-    public class TenantController : Controller
+    public class TenantController : BaseController
     {
         #region Variables
         private readonly IConfiguration _configuration;
@@ -55,13 +55,6 @@ namespace ApiCoreStarterKit.ApiControllers
                 else
                     return AddJsonResult(false);
             }
-        }
-
-        private JsonResult AddJsonResult(bool success)
-        {
-            var resultMessage = success ? "Success" : "Failure";
-
-            return Json(new { resultMessage });
         }
 
         [EnableCors("AllowOrigin")]

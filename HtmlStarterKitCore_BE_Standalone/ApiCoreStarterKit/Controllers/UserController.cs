@@ -12,7 +12,7 @@ using System.Web.Http;
 namespace ApiCoreStarterKit.Controllers
 {
     [RoutePrefix("api/user")]
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         #region variables
         private readonly IConfiguration _configuration;
@@ -54,7 +54,7 @@ namespace ApiCoreStarterKit.Controllers
         [EnableCors("AllowOrigin")]
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("CreateUser")]
-        public async Task<string> CreateUser(bool isAdmin, string selectedTenant, string userId, string firstName, string lastName)
+        public async Task<JsonResult> CreateUser(bool isAdmin, string selectedTenant, string userId, string firstName, string lastName)
         {
             var connectString = _configuration.GetConnectionString("DefaultConnection");
             var izendaAdminAuthToken = IzendaTokenAuthorization.GetIzendaAdminToken();
@@ -66,14 +66,14 @@ namespace ApiCoreStarterKit.Controllers
                 isAdmin = false;
 
                 if (tenantId == null)
-                    return "Izenda database can't locate this tenant. Please try again";
+                    return AddJsonResult(false);
             }
 
             var users = IzendaUtilities.GetUserList(userId, connectString);
 
             // invalid user input
             if (users.Any())
-                return "User is already existing";
+                return AddJsonResult(false);
 
             // save user into client DB
             await IzendaUtilities.SaveUserAsync(userId, userId, tenantId, connectString);
@@ -89,17 +89,9 @@ namespace ApiCoreStarterKit.Controllers
                 assignedRole, izendaAdminAuthToken);
 
             if (success)
-                return "A user has been created successfully";
+                return AddJsonResult(true);
             else
-                return "Failed to create a user";
-        }
-
-        // Test : delete this later
-        private JsonResult CreateEntityResult(bool success)
-        {
-            var resultMessage = success ? "Success" : "Failure";
-
-            return Json(new { resultMessage });
+                return AddJsonResult(false);
         }
         #endregion
     }
