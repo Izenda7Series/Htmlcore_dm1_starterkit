@@ -12,16 +12,16 @@ namespace ApiCoreStarterKit.IzendaBoundary
     public static class IzendaUtilities
     {
         #region Methods
-        public static TenantInfo GetTenantByName(string name, string connectionString)
+        public static Tenant GetTenantByName(string name, string connectionString)
         {
             return GetAllTenants(connectionString).FirstOrDefault(t => t.Name == name);
         }
 
-        public static List<TenantInfo> GetAllTenants(string connectionString)
+        public static List<Tenant> GetAllTenants(string connectionString)
         {
             using (var connection = new SqlConnection(connectionString))
             {
-                var _tenantNameList = new List<TenantInfo>();
+                var _tenantNameList = new List<Tenant>();
                 var queryString = $"SELECT * FROM Tenants;";
 
                 var command = new SqlCommand(queryString, connection);
@@ -30,7 +30,7 @@ namespace ApiCoreStarterKit.IzendaBoundary
 
                 while (reader.Read())
                 {
-                    var tenant = new TenantInfo(reader["Id"]?.ToString() ?? string.Empty, reader["Name"].ToString() ?? string.Empty);
+                    var tenant = new Tenant(int.Parse(reader["Id"]?.ToString() ?? string.Empty), reader["Name"].ToString() ?? string.Empty);
 
                     _tenantNameList.Add(tenant);
                 }
@@ -40,8 +40,50 @@ namespace ApiCoreStarterKit.IzendaBoundary
             }
         }
 
+        public static IEnumerable<UserInfo> GetUserList(string username, string connectionString)
+        {
+            var users = new List<UserInfo>();
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var queryString = $"SELECT UserName, PasswordHash, Tenant_Id FROM ApplicationUsers WHERE UserName = '{username}';";
+
+                var command = new SqlCommand(queryString, connection);
+                command.Connection.Open();
+                var reader = command.ExecuteReader();
+
+                // Get potential list of users
+                while (reader.Read())
+                {
+                    int? tenantId = null;
+
+                    var id = reader["Tenant_Id"].ToString();
+                    if (!string.IsNullOrEmpty(id))
+                    {
+                        tenantId = int.Parse(id);
+                    }
+
+                    var user = new UserInfo
+                    {
+                        UserName = reader["UserName"].ToString(),
+                        Password = reader["PasswordHash"].ToString()
+                    };
+
+                    if (tenantId == null) // if tenantId is null, it is system level
+                        user.TenantUniqueName = null;
+                    else // otherwise tenant level
+                        user.TenantUniqueName = GetAllTenants(connectionString).FirstOrDefault(t => t.Id == tenantId)?.Name ?? null;
+
+                    users.Add(user);
+                }
+                reader.Close();
+            }
+
+            return users;
+        }
+
         // SAVE tenant into client DB
-        public static async Task SaveTenantAsync(TenantInfo tenant, string connectionString)
+        public static async Task SaveTenantAsync(Tenant tenant, string connectionString)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -51,6 +93,37 @@ namespace ApiCoreStarterKit.IzendaBoundary
                 using (SqlCommand cmd = new SqlCommand(queryString, connection))
                 {
                     cmd.Parameters.Add("@param1", SqlDbType.NVarChar, 1000).Value = tenant.Name;
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        // SAVE user into cliend DB
+        public static async Task SaveUserAsync(string userName, string email, int? tenant_Id, string connectionString)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                var queryString = tenant_Id != null ? $"INSERT INTO ApplicationUsers (id, UserName, Email, Tenant_Id, EmailConfirmed, PhoneNumberConfirmed, TwoFactorEnabled, LockoutEnabled, AccessFailedCount)" +
+                    $"VALUES(@param0, @param1, @param2, @param3, @param4, @param5, @param6, @param7, @param8)"
+                        :$"INSERT INTO ApplicationUsers (id, UserName, Email, EmailConfirmed, PhoneNumberConfirmed, TwoFactorEnabled, LockoutEnabled, AccessFailedCount)" +
+                        $"VALUES(@param0, @param1, @param2, @param4, @param5, @param6, @param7, @param8)";
+
+                using (SqlCommand cmd = new SqlCommand(queryString, connection))
+                {
+                    cmd.Parameters.Add("@param0", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
+                    cmd.Parameters.Add("@param1", SqlDbType.NVarChar, 1000).Value = userName;
+                    cmd.Parameters.Add("@param2", SqlDbType.NVarChar, 1000).Value = email;
+
+                    if (tenant_Id != null)
+                        cmd.Parameters.Add("@param3", SqlDbType.Int, int.MaxValue).Value = tenant_Id;
+
+                    cmd.Parameters.Add("@param4", SqlDbType.Bit).Value = false;
+                    cmd.Parameters.Add("@param5", SqlDbType.Bit).Value = false;
+                    cmd.Parameters.Add("@param6", SqlDbType.Bit).Value = false;
+                    cmd.Parameters.Add("@param7", SqlDbType.Bit).Value = true;
+                    cmd.Parameters.Add("@param8", SqlDbType.Bit).Value = false;
+
                     cmd.ExecuteNonQuery();
                 }
             }

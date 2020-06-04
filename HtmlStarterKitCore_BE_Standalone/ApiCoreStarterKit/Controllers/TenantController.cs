@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Mvc5StarterKit.IzendaBoundary;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -27,7 +29,7 @@ namespace ApiCoreStarterKit.ApiControllers
         public async Task<JsonResult> CreateTenant(string tenantID, string tenantName)
         {
             if (string.IsNullOrEmpty(tenantID) || string.IsNullOrEmpty(tenantName))
-                return CreateEntityResult(false);
+                return AddJsonResult(false);
             else
             {
                 var izendaAdminAuthToken = IzendaTokenAuthorization.GetIzendaAdminToken();
@@ -37,32 +39,52 @@ namespace ApiCoreStarterKit.ApiControllers
 
                 if (isTenantExist == null)
                 {
-                    //TODO: Create tenant now
-
                     var success = await IzendaUtilities.CreateTenant(tenantName, tenantID, izendaAdminAuthToken);
 
                     if (success)
                     {
                         // save a new tenant at user DB
-                        var newTenant = new TenantInfo() { Name = tenantName };
+                        var newTenant = new Tenant() { Name = tenantName };
                         await IzendaUtilities.SaveTenantAsync(newTenant, connectString);
 
-                        return CreateEntityResult(true);
+                        return AddJsonResult(true);
                     }
                     else
-                        return CreateEntityResult(false);
+                        return AddJsonResult(false);
                 }
                 else
-                    return CreateEntityResult(false);
+                    return AddJsonResult(false);
             }
         }
 
-        private JsonResult CreateEntityResult(bool success)
+        private JsonResult AddJsonResult(bool success)
         {
             var resultMessage = success ? "Success" : "Failure";
 
             return Json(new { resultMessage });
-        } 
+        }
+
+        [EnableCors("AllowOrigin")]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("GetTenantList")]
+        public string GetTenantList()
+        {
+            // todo
+            var connectString = _configuration.GetConnectionString("DefaultConnection");
+            var tenantList = IzendaUtilities.GetAllTenants(connectString);
+
+            var list = new List<string>();
+            list.Add("Select Tenant");
+
+            foreach (var tenant in tenantList)
+            {
+                list.Add(tenant.Name);
+            }
+
+            var result = JsonConvert.SerializeObject(list);
+
+            return result;
+        }
         #endregion
     }
 }

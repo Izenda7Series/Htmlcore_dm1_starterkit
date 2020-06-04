@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -27,12 +29,9 @@ namespace ApiCoreStarterKit.IzendaBoundary
         #region Methods
         public static WebAPIService Instance
         {
-            //get { return _instance ?? (_instance = new WebAPIService(System.Configuration.ConfigurationManager.AppSettings["IzendaApiUrl"])); }
-
             get 
             { 
-                return _instance ?? 
-                    (_instance = new WebAPIService("http://localhost:6360/api/")); // TODO: fix this. Get this from appsettings json
+                return _instance ?? (_instance = new WebAPIService("http://localhost:6360/api/")); // TODO: fix this. Get this from appsettings json
             }
         }
 

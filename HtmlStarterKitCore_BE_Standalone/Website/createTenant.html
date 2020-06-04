@@ -27,17 +27,30 @@
         $(function () {
             $('#header').load('izenda-navbar.html');
         });
+        $(document).ready(function () {
+            $('#CreateTenantHeader').html("Create Tenant");
+            $('#createSuccessNotify').hide();
+            $('#createFailureNotify').hide();
+        });
     </script>
 
     <div id="header"></div>
 
     <div class="container body-content">
-        <h2>Create Tenant</h2>
+        <h2 id="CreateTenantHeader">Create Tenant</h2>
+
+        <div class="alert alert-success alert-dismissable" id="createSuccessNotify">
+            <strong>Tenant has been created successfully.</strong>
+        </div>
+
+        <div class="alert alert-danger alert-dismissable" id="createFailureNotify">
+            <strong>Can't create a new tenant. The tenant name or id already exists.</strong>
+        </div>
 
         <div class="row">
             <div class="col-md-8">
                 <section id="CreateTenantForm">
-                    <div class="form-horizontal">
+                    <form class="form-horizontal">
                         <h4>Create a new tenant</h4>
                         <hr />
                         <div class="form-group">
@@ -59,7 +72,7 @@
                                        class="btn btn-default" />
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </section>
             </div>
             <div class="col-md-4">
@@ -83,22 +96,28 @@
                 var tenantID = document.getElementById("tenantID").value;
                 var tenantName = document.getElementById("tenantName").value;
 
-                // short-handed version of ajax asynchronous call
-                $.getJSON(createTenantURL,
-                    {
-                        tenantID: tenantID,
-                        tenantName: tenantName
-                    },
-                    function (response) {
-                        if (response.resultMessage === "success") {
-                            alert("A tenant has been created successfully");
-                        } else {
-                            alert("Request to create a tenant has been denied");
-                        }
-                    });
+                if (tenantID !== "" && tenantName !== "")
+                    $.getJSON(createTenantURL,
+                        {
+                            tenantID: tenantID,
+                            tenantName: tenantName
+                        },
+                        function (response) {
+                            if (response.resultMessage === "Success") {
+                                $('#CreateTenantHeader').html("");
+                                $('#createSuccessNotify').show();
+                                $('#createFailureNotify').hide();
+                            } else {
+                                $('#CreateTenantHeader').html("");
+                                $('#createSuccessNotify').hide();
+                                $('#createFailureNotify').show();
+                            }
+                            $('#button_sub').blur();
+                        });
             });
         });
     </script>
+
     <hr />
     <footer id="izenda-footer">
         <div>

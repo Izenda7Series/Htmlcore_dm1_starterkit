@@ -15,7 +15,7 @@ namespace ApiCoreStarterKit.Services
         private readonly string _defaultConnectionString;
 
         // we don't have to expose this. Encapsulate
-        private readonly List<TenantInfo> _tenantNameList = new List<TenantInfo>();
+        private readonly List<Tenant> _tenantNameList = new List<Tenant>();
         #endregion
 
         #region CTOR
@@ -42,7 +42,7 @@ namespace ApiCoreStarterKit.Services
 
                 while (reader.Read())
                 {
-                    var tenant = new TenantInfo(reader["Id"]?.ToString() ?? string.Empty, reader["Name"].ToString() ?? string.Empty);
+                    var tenant = new Tenant(int.Parse(reader["Id"]?.ToString() ?? string.Empty), reader["Name"].ToString() ?? string.Empty);
 
                     _tenantNameList.Add(tenant);
                 }
@@ -84,14 +84,21 @@ namespace ApiCoreStarterKit.Services
                 // Get potential list of users
                 while (reader.Read())
                 {
-                    var tenantId = reader["Tenant_Id"].ToString();
+                    int? tenantId = null;
+                    
+                    var id = reader["Tenant_Id"].ToString();
+                    if (!string.IsNullOrEmpty(id))
+                    {
+                        tenantId = int.Parse(id);
+                    }
+                       
                     var user = new UserInfo
                     {
                         UserName = reader["UserName"].ToString(),
                         Password = reader["PasswordHash"].ToString()
                     };
 
-                    if (string.IsNullOrEmpty(tenantId)) // if tenantId is null, it is system level
+                    if (tenantId == null) // if tenantId is null, it is system level
                         user.TenantUniqueName = null;
                     else // otherwise tenant level
                         user.TenantUniqueName = _tenantNameList.FirstOrDefault(t => t.Id == tenantId)?.Name ?? null;
