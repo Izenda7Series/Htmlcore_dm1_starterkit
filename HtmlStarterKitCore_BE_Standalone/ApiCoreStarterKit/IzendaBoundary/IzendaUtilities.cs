@@ -112,8 +112,8 @@ namespace ApiCoreStarterKit.IzendaBoundary
                 using (SqlCommand cmd = new SqlCommand(queryString, connection))
                 {
                     cmd.Parameters.Add("@param0", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
-                    cmd.Parameters.Add("@param1", SqlDbType.NVarChar, 1000).Value = userName;
-                    cmd.Parameters.Add("@param2", SqlDbType.NVarChar, 1000).Value = email;
+                    cmd.Parameters.Add("@param1", SqlDbType.NVarChar, 256).Value = userName;
+                    cmd.Parameters.Add("@param2", SqlDbType.NVarChar, 256).Value = email;
 
                     if (tenant_Id != null)
                         cmd.Parameters.Add("@param3", SqlDbType.Int, int.MaxValue).Value = tenant_Id;
