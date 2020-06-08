@@ -3,13 +3,16 @@
     public class Tenant
     {
         #region Properties
-        public string Id { get; }
+        public int Id { get; set; }
 
-        public string Name { get; }
+        public string Name { get; set; }
         #endregion
 
         #region CTOR
-        public Tenant(string id, string name)
+        public Tenant()
+        { }
+
+        public Tenant(int id, string name)
         {
             Id = id;
             Name = name;

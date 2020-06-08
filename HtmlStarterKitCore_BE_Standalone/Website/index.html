@@ -2,75 +2,75 @@
 <html>
 
 <head>
-  <title>Home Page</title>
+    <title>Home Page</title>
 
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="/izenda/izenda-ui.css" rel="stylesheet">
-  <link href="Content/custom.css" rel="stylesheet"  />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="/izenda/izenda-ui.css" rel="stylesheet">
+    <link href="Content/custom.css" rel="stylesheet" />
 
-  <style>
-    #izenda-footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-    }
+    <style>
+        #izenda-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
 
-    #izenda-header{
-     color: #1c4e89;
-    }
-  </style>
+        #izenda-header {
+            color: #1c4e89;
+        }
+    </style>
 </head>
 
 <body>
-  <script>
-    $(function() {
-      $('#header').load('izenda-navbar.html');
-    });
-  </script>
+    <script>
+        $(function () {
+            $('#header').load('izenda-navbar.html');
+        });
+    </script>
 
-  <div id="header"></div>
+    <div id="header"></div>
 
-  <div class="izenda-container body-content">
-    <div class="jumbotron">
-      <h1 id="izenda-header">Izenda HTML Core DM1 Starterkit</h1>
-      <p class="lead">This starter kit will help your development team quickly and easily embed Izenda into your application.</p>
+    <div class="izenda-container body-content">
+        <div class="jumbotron">
+            <h1 id="izenda-header">Izenda HTML Core DM1 Starterkit</h1>
+            <p class="lead">This starter kit will help your development team quickly and easily embed Izenda into your application.</p>
+        </div>
+
+        <div class="row izenda-base-color">
+            <div class="col-md-4">
+                <h2>User Integration</h2>
+                <p>Easily integrate your users, roles, and tenants with Izenda. </p>
+                <p><a class="btn btn-primary" href="https://www.izenda.com/docs/dev/.embedding_izenda.html#embedding-izenda-into-your-application" role="button">Learn more »</a></p>
+            </div>
+
+            <div class="col-md-4">
+                <h2>Hidden Filters</h2>
+                <p>Our flexible API allows you to apply row-level security to your data sources. Filter data by user, role, tenant, or your own custom logic. </p>
+                <p><a class="btn btn-primary" href="https://www.izenda.com/docs/dev/ref_iadhocextension.html?filter#sethiddenfilters" role="button">Learn more »</a></p>
+            </div>
+
+            <div class="col-md-4">
+                <h2>Security</h2>
+                <p>Review best practices to help ensure a safe and secure deployment of Izenda.</p>
+                <p><a class="btn btn-primary" href="https://www.izenda.com/docs/ui/doc_security_recommendations.html" role="button">Learn more »</a></p>
+            </div>
+        </div>
     </div>
 
-    <div class="row izenda-base-color">
-      <div class="col-md-4">
-        <h2>User Integration</h2>
-        <p>Easily integrate your users, roles, and tenants with Izenda. </p>
-        <p><a class="btn btn-primary" href="https://www.izenda.com/docs/dev/.embedding_izenda.html#embedding-izenda-into-your-application" role="button">Learn more »</a></p>
-      </div>
-
-      <div class="col-md-4">
-        <h2>Hidden Filters</h2>
-        <p>Our flexible API allows you to apply row-level security to your data sources. Filter data by user, role, tenant, or your own custom logic. </p>
-        <p><a class="btn btn-primary" href="https://www.izenda.com/docs/dev/ref_iadhocextension.html?filter#sethiddenfilters" role="button">Learn more »</a></p>
-      </div>
-
-      <div class="col-md-4">
-        <h2>Security</h2>
-        <p>Review best practices to help ensure a safe and secure deployment of Izenda.</p>
-        <p><a class="btn btn-primary" href="https://www.izenda.com/docs/ui/doc_security_recommendations.html" role="button">Learn more »</a></p>
-      </div>
-    </div>
-  </div>
-
-  <hr />
-  <footer id="izenda-footer">
-    <div>
-        &copy;
-        <span id="copyright">
-            <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
-        </span>
-        Izenda Integrated BI Platform
-    </div>
-  </footer>
+    <hr />
+    <footer id="izenda-footer">
+        <div>
+            &copy;
+            <span id="copyright">
+                <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+            </span>
+            Izenda Integrated BI Platform
+        </div>
+    </footer>
 </body>
 
 </html>

@@ -1,14 +1,18 @@
-﻿using ApiCoreStarterKit.Models;
+﻿using ApiCoreStarterKit.IzendaBoundary;
+using ApiCoreStarterKit.Models;
 using ApiCoreStarterKit.Services;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Mvc5StarterKit.IzendaBoundary;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace ApiCoreStarterKit.Controllers
 {
     [RoutePrefix("api/user")]
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         #region variables
         private readonly IConfiguration _configuration;
@@ -35,17 +39,60 @@ namespace ApiCoreStarterKit.Controllers
                 return null;
 
             // Login success, encrypt and send token
-            var user = new UserInfo 
-            { 
-                UserName = email, 
-                TenantUniqueName = tenant, 
-                Password = password 
+            var user = new UserInfo
+            {
+                UserName = email,
+                TenantUniqueName = tenant,
+                Password = password
             };
 
-            var token = IzendaBoundary.IzendaTokenAuthorization.GetToken(user);
+            var token = IzendaTokenAuthorization.GetToken(user);
 
             return Json(new { token });
-        } 
+        }
+
+        [EnableCors("AllowOrigin")]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("CreateUser")]
+        public async Task<JsonResult> CreateUser(bool isAdmin, string selectedTenant, string userId, string firstName, string lastName)
+        {
+            var connectString = _configuration.GetConnectionString("DefaultConnection");
+            var izendaAdminAuthToken = IzendaTokenAuthorization.GetIzendaAdminToken();
+            int? tenantId = null;
+
+            if (selectedTenant != "Select Tenant") // tenant level
+            {
+                tenantId = IzendaUtilities.GetTenantByName(selectedTenant, connectString)?.Id;
+                isAdmin = false;
+
+                if (tenantId == null)
+                    return AddJsonResult(false);
+            }
+
+            var users = IzendaUtilities.GetUserList(userId, connectString);
+
+            // invalid user input
+            if (users.Any())
+                return AddJsonResult(false);
+
+            // save user into client DB
+            await IzendaUtilities.SaveUserAsync(userId, userId, tenantId, connectString);
+
+            var assignedRole = "Employee"; // set default role if required
+
+            var success = await IzendaUtilities.CreateIzendaUser(
+                selectedTenant,
+                userId,
+                lastName,
+                firstName,
+                isAdmin,
+                assignedRole, izendaAdminAuthToken);
+
+            if (success)
+                return AddJsonResult(true);
+            else
+                return AddJsonResult(false);
+        }
         #endregion
     }
 }

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -10,12 +10,20 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="/izenda/izenda-ui.css" rel="stylesheet">
-  <link href="Content/custom.css" rel="stylesheet"  />
+  <link href="Content/custom.css" rel="stylesheet" />
+
+  <style>
+    #izenda-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+    }
+  </style>
 </head>
 
 <body>
   <script>
-    $(function() {
+    $(function () {
       $('#header').load('izenda-navbar.html');
     });
   </script>
@@ -27,38 +35,36 @@
 
     <div class="row">
       <div class="col-md-8">
-        <div class="form-horizontal">
+        <div class="form-horizontal" id="submitForm">
           <h4>Use a local account to log in</h4>
           <hr />
           <div class="form-group">
             <label for="tenant" class="col-md-2 control-label">Tenant</label>
             <div class="col-md-10">
-              <input type="text" placeholder="Enter Tenant Name" name="tenant" class="form-control" id="tenant">
+              <input type="text" name="tenant" class="form-control" id="tenant">
             </div>
           </div>
           <div class="form-group">
             <label for="email" class="col-md-2 control-label"><b>Email</b></label>
             <div class="col-md-10">
-              <input type="email" placeholder="Enter Email" name="email" required class="form-control" id="email">
+              <input type="email" name="email" required="true" class="form-control" id="email">
             </div>
           </div>
           <div class="form-group">
             <label for="psw" class="col-md-2 control-label"><b>Password</b></label>
             <div class="col-md-10">
-              <input type="password" placeholder="Enter Password" name="psw" required class="form-control" id="psw">
+              <input type="password" name="psw" required="true" class="form-control" id="psw">
+            </div>
+          </div>
+          <div class="col-md-offset-2 col-md-10">
+            <div class="form-group">
+              <input type="checkbox" id="IsAdminCheckBox" value="false" />
+              <label for="RememberMe" style="font-weight:normal;">Remember me?</label>
             </div>
           </div>
           <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-              <div class="checkbox">
-                <input type="checkbox" id="RememberMe">
-                <label for="RememberMe">Remember me?</label>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-              <button type="button" class="btn btn-default" name="button_sub" id="button_sub">Log in</button>
+              <button type="submit" class="btn btn-default" name="button_sub" id="button_sub">Log in</button>
             </div>
           </div>
         </div>
@@ -68,7 +74,9 @@
         <h4>Use another service to log in</h4>
         <hr />
         <div>
-          <p>There are no external authentication services configured. See <a href="https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/external-authentication-services">this article</a> for details on setting up this ASP.NET
+          <p>There are no external authentication services configured. See <a
+              href="https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/external-authentication-services">this
+              article</a> for details on setting up this ASP.NET
             application to support logging in via external services.</p>
         </div>
       </div>
@@ -77,8 +85,8 @@
 
   <!--The below ajax sends the tenant, email, and password to the GenerateToken method-->
   <script type="text/javascript">
-    $(function() {
-      $("#button_sub").click(function() {
+    $(function () {
+      $("#button_sub").click(function () {
         var authApplicationURL = "http://localhost:19657/api/user/GenerateToken";
         var userTenant = document.getElementById("tenant").value;
         var userEmail = document.getElementById("email").value;
@@ -96,7 +104,7 @@
           dataType: 'json',
           async: false,
           data: value,
-          success: function(response) {
+          success: function (response) {
             // The below lines use localStorage to store the token
             console.log(response["token"]);
             localStorage.setItem('token', response["token"]);
@@ -109,7 +117,7 @@
             //redirect
             window.location.href = "/index.html";
           },
-          error: function(response) {
+          error: function (response) {
             console.log(response);
 
             window.alert("Login failed. Please check your credentials again.");
@@ -118,6 +126,25 @@
       });
     });
   </script>
+
+  <script type="text/javascript">
+    $("#submitForm").keypress(function (e) {
+      if (e.which == 13) {
+        $("#button_sub").click();
+        return false;
+      }
+    });
+  </script>
+  <hr />
+  <footer id="izenda-footer">
+    <div>
+      &copy;
+      <span id="copyright">
+        <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+      </span>
+      Izenda Integrated BI Platform
+    </div>
+  </footer>
 </body>
 
 </html>

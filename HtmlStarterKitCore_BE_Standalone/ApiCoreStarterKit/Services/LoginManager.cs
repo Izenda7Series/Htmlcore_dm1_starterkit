@@ -1,4 +1,5 @@
 ﻿using ApiCoreStarterKit.Models;
+using Mvc5StarterKit.IzendaBoundary;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -41,7 +42,7 @@ namespace ApiCoreStarterKit.Services
 
                 while (reader.Read())
                 {
-                    var tenant = new Tenant(reader["Id"]?.ToString() ?? string.Empty, reader["Name"].ToString() ?? string.Empty);
+                    var tenant = new Tenant(int.Parse(reader["Id"]?.ToString() ?? string.Empty), reader["Name"].ToString() ?? string.Empty);
 
                     _tenantNameList.Add(tenant);
                 }
@@ -65,7 +66,7 @@ namespace ApiCoreStarterKit.Services
                 return false;
 
             // check if password matches
-            return password?.Equals(IzendaBoundary.IzendaTokenAuthorization.GetPassword(currentUser.Password)) ?? false;
+            return password?.Equals(IzendaTokenAuthorization.GetPassword(currentUser.Password)) ?? false;
         }
 
         private IEnumerable<UserInfo> GetUserList(string username)
@@ -83,14 +84,21 @@ namespace ApiCoreStarterKit.Services
                 // Get potential list of users
                 while (reader.Read())
                 {
-                    var tenantId = reader["Tenant_Id"].ToString();
+                    int? tenantId = null;
+                    
+                    var id = reader["Tenant_Id"].ToString();
+                    if (!string.IsNullOrEmpty(id))
+                    {
+                        tenantId = int.Parse(id);
+                    }
+                       
                     var user = new UserInfo
                     {
                         UserName = reader["UserName"].ToString(),
                         Password = reader["PasswordHash"].ToString()
                     };
 
-                    if (string.IsNullOrEmpty(tenantId)) // if tenantId is null, it is system level
+                    if (tenantId == null) // if tenantId is null, it is system level
                         user.TenantUniqueName = null;
                     else // otherwise tenant level
                         user.TenantUniqueName = _tenantNameList.FirstOrDefault(t => t.Id == tenantId)?.Name ?? null;

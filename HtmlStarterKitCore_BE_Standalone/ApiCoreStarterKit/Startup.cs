@@ -3,11 +3,19 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace ApiCoreStarterKit
 {
     public class Startup
     {
+        #region Constants
+        private readonly string jquery = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js";
+        private readonly string bootstrapjs = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
+        private readonly string bootstrapcss = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
+        private readonly string copyright = DateTime.Now.Year + " Izenda Integrated BI Platform"; 
+        #endregion
+
         #region Properties
         public IConfiguration Configuration { get; }
         #endregion
@@ -54,9 +62,34 @@ namespace ApiCoreStarterKit
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("<h1>Izenda System Settings Landing Page</h1>");
+                await context.Response.WriteAsync(
+                    "<!DOCTYPE html>"+
+                    "<html>"+
+                    "<head>"+
+                    "<title>Izenda Landing</title>"+
+                     "<script src=" +
+                    jquery + ">" +
+                    "</script>" +
+                    "<script src=" +
+                    bootstrapjs + ">" +
+                    "</script>" +
+
+                    "<link rel=" +
+                    "stylesheet" + " " +
+                    "href=" +
+                    bootstrapcss + ">" +
+
+                    "</head>" +
+                    "<body>"+
+                    
+                    "<h3>This is the API used by the HTML Core project, the izenda API should be deployed separately. See the readme.txt file for more details.</h3>" +
+                 
+                    copyright +
+                   
+                    "</body>"+
+                    "</html>");
             });
-        } 
+        }
         #endregion
     }
 }

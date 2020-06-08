@@ -6,12 +6,14 @@ namespace ApiCoreStarterKit.IzendaBoundary
 {
     public static class StringCipher
     {
-        #region Variables
+        #region Constants
         private const int RequiredKeyLength = 16;
 
         //must be at least 16 characters long (128 bits)
-        private const string InitializationVector = "ALDAOQJkdak10314";
+        private const string InitializationVector = "ALDAOQJkdak10314"; 
+        #endregion
 
+        #region Variables
         private static readonly AesCryptoServiceProvider Crypto = new AesCryptoServiceProvider();
         #endregion
 
