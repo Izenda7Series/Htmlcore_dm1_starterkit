@@ -190,8 +190,7 @@ namespace ApiCoreStarterKit.IzendaBoundary
                 FirstName = firstName,
                 TenantDisplayId = izendaTenant != null ? izendaTenant.Name : string.Empty,
                 InitPassword = false,
-                SystemAdmin = isAdmin,
-                Active = true
+                SystemAdmin = isAdmin
             };
 
             if (!string.IsNullOrWhiteSpace(roleName))
@@ -209,7 +208,7 @@ namespace ApiCoreStarterKit.IzendaBoundary
         {
             var tenants = await WebAPIService.Instance.GetAsync<IList<TenantDetail>>("/tenant/allTenants", authToken);
             if (tenants != null)
-                return tenants.FirstOrDefault(x => x.Name.Equals(tenantName, StringComparison.InvariantCultureIgnoreCase));
+                return tenants.FirstOrDefault(x => x.TenantId.Equals(tenantName, StringComparison.InvariantCultureIgnoreCase));
 
             return null;
         }
