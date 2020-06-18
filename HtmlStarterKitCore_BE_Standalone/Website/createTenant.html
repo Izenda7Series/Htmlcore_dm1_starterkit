@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <head>
     <title>Create Tenant</title>
 
@@ -28,25 +28,12 @@
         $(function () {
             $('#header').load('izenda-navbar.html');
         });
-        $(document).ready(function () {
-            $('#CreateTenantHeader').html("Create Tenant");
-            $('#createSuccessNotify').hide();
-            $('#createFailureNotify').hide();
-        });
     </script>
 
     <div id="header"></div>
 
     <div class="container body-content">
         <h2 id="CreateTenantHeader">Create Tenant</h2>
-
-        <div class="alert alert-success alert-dismissable" id="createSuccessNotify">
-            <strong>Tenant has been created successfully.</strong>
-        </div>
-
-        <div class="alert alert-danger alert-dismissable" id="createFailureNotify">
-            <strong>Can't create a new tenant. The tenant name or id already exists.</strong>
-        </div>
 
         <div class="row">
             <div class="col-md-8">
@@ -64,13 +51,13 @@
                             <label for="tenantName" class="col-md-2 control-label"><b>Tenant Name</b></label>
                             <div class="col-md-10">
                                 <input type="text" name="tenantName" class="form-control" id="tenantName"
-                                    required="true">
+                                       required="true">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Submit" name="button_sub" id="button_sub"
-                                    class="btn btn-default" />
+                                       class="btn btn-default" />
                             </div>
                         </div>
                     </form>
@@ -105,13 +92,9 @@
                         },
                         function (response) {
                             if (response.resultMessage === "Success") {
-                                $('#CreateTenantHeader').html("");
-                                $('#createSuccessNotify').show();
-                                $('#createFailureNotify').hide();
+                                window.location.href = "/createTenantSuccess.html";
                             } else {
-                                $('#CreateTenantHeader').html("");
-                                $('#createSuccessNotify').hide();
-                                $('#createFailureNotify').show();
+                                window.location.href = "/failedToCreateTenant.html";
                             }
                             $('#button_sub').blur();
                         }, event.preventDefault());
