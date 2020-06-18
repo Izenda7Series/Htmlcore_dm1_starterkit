@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <head>
     <title>Create User</title>
 
@@ -40,7 +40,7 @@
                 }
             });
         });
-        
+
         $(document).ready(function () {
             var getAllTenantsURL = "http://localhost:19657/api/tenant/getTenantList";
             var tenantList = document.getElementById("TenantList");
@@ -66,14 +66,6 @@
 
     <div class="container body-content">
         <h2 id="CreateUserHeader">Create User</h2>
-
-        <div class="alert alert-success alert-dismissable" id="createSuccessNotify">
-            <strong>User has been created successfully.</strong>
-        </div>
-
-        <div class="alert alert-danger alert-dismissable" id="createFailureNotify">
-            <strong>Can't create a new user. The user name or id already exists.</strong>
-        </div>
 
         <div class="row">
             <div class="col-md-8">
@@ -115,7 +107,7 @@
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Submit" name="button_sub" id="button_sub"
-                                    class="btn btn-default" />
+                                       class="btn btn-default" />
                             </div>
                         </div>
                     </form>
@@ -152,25 +144,20 @@
                 var emailPattern = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$");
 
                 if (emailPattern.test(userId) && userId !== "" && firstName !== "" && lastName !== "")
-                $.getJSON(createUserURL,
-                    {
-                        isAdmin: isAdmin,
-                        selectedTenant: selectedTenant,
-                        userId: userId,
-                        firstName: firstName,
-                        lastName: lastName,
-                    },
-                    function (response) {
+                    $.getJSON(createUserURL,
+                        {
+                            isAdmin: isAdmin,
+                            selectedTenant: selectedTenant,
+                            userId: userId,
+                            firstName: firstName,
+                            lastName: lastName,
+                        },
+                        function (response) {
                             if (response.resultMessage === "Success") {
-                                $('#CreateUserHeader').html("");
-                                $('#createSuccessNotify').show();
-                                $('#createFailureNotify').hide();
+                                window.location.href = "/createUserSuccess.html";
                             } else {
-                                $('#CreateUserHeader').html("");
-                                $('#createSuccessNotify').hide();
-                                $('#createFailureNotify').show();
+                                window.location.href = "/failedToCreateUser.html";
                             }
-                            $('#button_sub').blur();
                         }, event.preventDefault());
             });
         });

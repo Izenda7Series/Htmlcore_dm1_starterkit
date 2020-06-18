@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <title>Create a user result</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="/izenda/izenda-ui.css" rel="stylesheet">
+    <link href="Content/custom.css" rel="stylesheet" />
+
+    <style>
+        #izenda-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+
+        #izenda-header {
+            color: #1c4e89;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        $(function () {
+            $('#header').load('izenda-navbar.html');
+        });
+    </script>
+    <div class="container body-content">
+        <div id="header"></div>
+
+        <h2>Success!</h2>
+        <div class="alert alert-success alert-dismissable">
+            <strong>User has been created successfully.</strong>
+        </div>
+    </div>
+</body>
