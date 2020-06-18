@@ -35,7 +35,7 @@ namespace ApiCoreStarterKit.Controllers
                 var izendaAdminAuthToken = IzendaTokenAuthorization.GetIzendaAdminToken();
                 var connectString = _configuration.GetConnectionString("DefaultConnection");
 
-                var isTenantExist = IzendaUtilities.GetTenantByName(tenantName, connectString); // check user DB first
+                var isTenantExist = IzendaUtilities.GetTenantByName(tenantID, connectString); // check user DB first
 
                 if (isTenantExist == null)
                 {
@@ -44,7 +44,7 @@ namespace ApiCoreStarterKit.Controllers
                     if (success)
                     {
                         // save a new tenant at user DB
-                        var newTenant = new Tenant() { Name = tenantName };
+                        var newTenant = new Tenant() { Name = tenantID };
                         await IzendaUtilities.SaveTenantAsync(newTenant, connectString);
 
                         return AddJsonResult(true);
