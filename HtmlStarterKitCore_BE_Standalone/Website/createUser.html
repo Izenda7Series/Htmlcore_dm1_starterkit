@@ -45,10 +45,6 @@
             var getAllTenantsURL = "http://localhost:19657/api/tenant/getTenantList";
             var tenantList = document.getElementById("TenantList");
 
-            $('#CreateUserHeader').html("Create User");
-            $('#createSuccessNotify').hide();
-            $('#createFailureNotify').hide();
-
             $.getJSON(getAllTenantsURL,
                 function (response) {
                     response.forEach(element => {
