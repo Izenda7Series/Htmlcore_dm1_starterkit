@@ -31,15 +31,38 @@
 
         $(function () {
             $("#TenantList").change(function (event) {
-                var selectedItem = $("#TenantList").find(":selected").text();
-
-                if (selectedItem === "Select Tenant") {
+                var selectedTenant = $("#TenantList").find(":selected").text();
+                if (selectedTenant === "Select Tenant") {
                     AdminCheckBoxDiv.style.display = "block";
                 } else {
                     AdminCheckBoxDiv.style.display = "none";
                 }
+
+                loadRoleList();
             });
         });
+
+        function loadRoleList() {
+            var getRoleListUrl = "http://localhost:19657/api/user/getRoleList";
+            var roleList = document.getElementById("RoleList");
+            var selectedTenant = $("#TenantList").find(":selected").text();
+
+            $.getJSON(getRoleListUrl,
+                {
+                    selectedTenant: selectedTenant
+                },
+                function (response) {
+                    $("#RoleList").html("");
+
+                    response.forEach(element => {
+                        var option = document.createElement("option");
+                        option.value = element;
+                        option.text = element;
+
+                        roleList.appendChild(option);
+                    });
+                });
+        }
 
         $(document).ready(function () {
             var getAllTenantsURL = "http://localhost:19657/api/tenant/getTenantList";
@@ -55,6 +78,8 @@
                         tenantList.appendChild(option);
                     });
                 });
+
+            loadRoleList();
         });
     </script>
 
@@ -80,6 +105,13 @@
                             <div class="form-group">
                                 <input type="checkbox" id="IsAdminCheckBox" name="IsAdminCheckBox" />
                                 <label for="IsAdminCheckBox" style="font-weight:normal;">Is Admin</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="RoleList" class="col-md-2 control-label">Selected Role</label>
+                            <div class="col-md-10">
+                                <select class="form-control" id="RoleList" name="RoleList">
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">

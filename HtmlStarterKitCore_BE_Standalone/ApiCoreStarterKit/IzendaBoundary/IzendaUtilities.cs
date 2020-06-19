@@ -204,7 +204,7 @@ namespace ApiCoreStarterKit.IzendaBoundary
             return success;
         }
 
-        private static async Task<TenantDetail> GetIzendaTenantByName(string tenantName, string authToken)
+        public static async Task<TenantDetail> GetIzendaTenantByName(string tenantName, string authToken)
         {
             var tenants = await WebAPIService.Instance.GetAsync<IList<TenantDetail>>("/tenant/allTenants", authToken);
             if (tenants != null)
@@ -213,14 +213,28 @@ namespace ApiCoreStarterKit.IzendaBoundary
             return null;
         }
 
+        /// <summary>
+        /// Get a matched role from the list of Izenda Roles under the selected tenant
+        /// </summary>
         private static async Task<RoleDetail> GetIzendaRoleByTenantAndName(Guid? tenantId, string roleName, string authToken)
         {
-            var roles = await WebAPIService.Instance.GetAsync<IList<RoleDetail>>("/role/all/" + (tenantId.HasValue ? tenantId.ToString() : null), authToken);
+            var roles = await GetAllIzendaRoleByTenant(tenantId, authToken);
 
-            if (roles != null)
+            if (roles.Any())
                 return roles.FirstOrDefault(r => r.Name.Equals(roleName, StringComparison.InvariantCultureIgnoreCase));
 
             return null;
+        }
+
+        /// <summary>
+        /// Get all Izenda Roles by tenant
+        /// For more information, please refer to https://www.izenda.com/docs/ref/api_role.html#get-role-all-tenant-id
+        /// </summary>
+        public static async Task<IList<RoleDetail>> GetAllIzendaRoleByTenant(Guid? tenantId, string authToken)
+        {
+            var roleList = await WebAPIService.Instance.GetAsync<IList<RoleDetail>>("/role/all/" + (tenantId.HasValue ? tenantId.ToString() : null), authToken);
+
+            return roleList;
         }
         #endregion
     }
