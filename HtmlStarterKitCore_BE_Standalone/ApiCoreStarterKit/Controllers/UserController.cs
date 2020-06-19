@@ -56,7 +56,7 @@ namespace ApiCoreStarterKit.Controllers
         [EnableCors("AllowOrigin")]
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("CreateUser")]
-        public async Task<JsonResult> CreateUser(bool isAdmin, string selectedTenant, string userId, string firstName, string lastName)
+        public async Task<JsonResult> CreateUser(bool isAdmin, string selectedRole, string selectedTenant, string userId, string firstName, string lastName)
         {
             var connectString = _configuration.GetConnectionString("DefaultConnection");
             var izendaAdminAuthToken = IzendaTokenAuthorization.GetIzendaAdminToken();
@@ -80,7 +80,7 @@ namespace ApiCoreStarterKit.Controllers
             // save user into client DB
             await IzendaUtilities.SaveUserAsync(userId, userId, tenantId, connectString);
 
-            var assignedRole = "Employee"; // set default role if required
+            var assignedRole = !string.IsNullOrEmpty(selectedRole) ? selectedRole : "Employee"; // set default role if required
 
             var success = await IzendaUtilities.CreateIzendaUser(
                 selectedTenant,

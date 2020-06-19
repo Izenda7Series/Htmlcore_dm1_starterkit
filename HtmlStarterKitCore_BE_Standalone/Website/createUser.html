@@ -165,6 +165,7 @@
 
                 var isAdmin = $('#IsAdminCheckBox').is(":checked");
                 var selectedTenant = $("#TenantList").find(":selected").text();
+                var selectedRole = $("#RoleList").find(":selected").text();
                 var userId = document.getElementById("UserId").value;
                 var firstName = document.getElementById("FirstName").value;
                 var lastName = document.getElementById("LastName").value;
@@ -175,6 +176,7 @@
                     $.getJSON(createUserURL,
                         {
                             isAdmin: isAdmin,
+                            selectedRole: selectedRole,
                             selectedTenant: selectedTenant,
                             userId: userId,
                             firstName: firstName,
