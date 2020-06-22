@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Mvc5StarterKit.IzendaBoundary;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -54,7 +56,7 @@ namespace ApiCoreStarterKit.Controllers
         [EnableCors("AllowOrigin")]
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("CreateUser")]
-        public async Task<JsonResult> CreateUser(bool isAdmin, string selectedTenant, string userId, string firstName, string lastName)
+        public async Task<JsonResult> CreateUser(bool isAdmin, string selectedRole, string selectedTenant, string userId, string firstName, string lastName)
         {
             var connectString = _configuration.GetConnectionString("DefaultConnection");
             var izendaAdminAuthToken = IzendaTokenAuthorization.GetIzendaAdminToken();
@@ -78,7 +80,7 @@ namespace ApiCoreStarterKit.Controllers
             // save user into client DB
             await IzendaUtilities.SaveUserAsync(userId, userId, tenantId, connectString);
 
-            var assignedRole = "Employee"; // set default role if required
+            var assignedRole = !string.IsNullOrEmpty(selectedRole) ? selectedRole : "Employee"; // set default role if required
 
             var success = await IzendaUtilities.CreateIzendaUser(
                 selectedTenant,
@@ -92,6 +94,27 @@ namespace ApiCoreStarterKit.Controllers
                 return AddJsonResult(true);
             else
                 return AddJsonResult(false);
+        }
+
+
+        [EnableCors("AllowOrigin")]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("GetRoleList")]
+        public async Task<string> GetRoleList(string selectedTenant)
+        {
+            var selectList = new List<string>();
+            var adminToken = IzendaTokenAuthorization.GetIzendaAdminToken();
+
+            var izendaTenant = await IzendaUtilities.GetIzendaTenantByName(selectedTenant, adminToken);
+            var roleDetailsByTenant = await IzendaUtilities.GetAllIzendaRoleByTenant(izendaTenant?.Id ?? null, adminToken);
+
+            foreach (var roleDetail in roleDetailsByTenant)
+            {
+                selectList.Add(roleDetail.Name);
+            }
+            var result = JsonConvert.SerializeObject(selectList);
+
+            return result;
         }
         #endregion
     }
