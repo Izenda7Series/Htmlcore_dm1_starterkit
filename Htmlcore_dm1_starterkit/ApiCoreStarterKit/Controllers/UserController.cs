@@ -9,11 +9,10 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Http;
 
 namespace ApiCoreStarterKit.Controllers
 {
-    [RoutePrefix("api/user")]
+    [Route("api/user")]
     public class UserController : BaseController
     {
         #region variables
@@ -26,8 +25,8 @@ namespace ApiCoreStarterKit.Controllers
 
         #region Methods
         [EnableCors("AllowOrigin")]
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("GenerateToken")]
+        [HttpGet]
+        [Route("GenerateToken")]
         public JsonResult GenerateToken(string tenant, string email, string password)
         {
             var defaultConnectionString = _configuration.GetConnectionString("DefaultConnection");
@@ -54,8 +53,8 @@ namespace ApiCoreStarterKit.Controllers
         }
 
         [EnableCors("AllowOrigin")]
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("CreateUser")]
+        [HttpGet]
+        [Route("CreateUser")]
         public async Task<JsonResult> CreateUser(bool isAdmin, string selectedRole, string selectedTenant, string userId, string firstName, string lastName)
         {
             var connectString = _configuration.GetConnectionString("DefaultConnection");
@@ -98,8 +97,8 @@ namespace ApiCoreStarterKit.Controllers
 
 
         [EnableCors("AllowOrigin")]
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("GetRoleList")]
+        [HttpGet]
+        [Route("GetRoleList")]
         public async Task<string> GetRoleList(string selectedTenant)
         {
             var selectList = new List<string>();
@@ -113,6 +112,17 @@ namespace ApiCoreStarterKit.Controllers
                 selectList.Add(roleDetail.Name);
             }
             var result = JsonConvert.SerializeObject(selectList);
+
+            return result;
+        }
+
+        [EnableCors("AllowOrigin")]
+        [HttpGet]
+        [Route("GetCurrentUserInfo")]
+        public string GetCurrentUserInfo(string token)
+        {
+            var userInfo = IzendaTokenAuthorization.GetUserInfo(token);
+            var result = JsonConvert.SerializeObject(userInfo.UserName);
 
             return result;
         }
