@@ -1,7 +1,8 @@
 ﻿using ApiCoreStarterKit.IzendaBoundary;
 using ApiCoreStarterKit.Models;
+using Microsoft.Extensions.Configuration;
 using System;
-using System.Configuration;
+using System.IO;
 
 namespace Mvc5StarterKit.IzendaBoundary
 {
@@ -46,7 +47,9 @@ namespace Mvc5StarterKit.IzendaBoundary
 
         public static UserInfo DecryptIzendaAuthenticationMessage(string encryptedMessage)
         {
-            var rsaPrivateKey = ConfigurationManager.AppSettings["RSAPrivateKey"];
+            IConfigurationRoot configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
+
+            var rsaPrivateKey = configuration.GetValue<string>("rsaPrivateKey:rsaPrivateKey");
             var cipher = new System.Security.Cryptography.RSACryptoServiceProvider();
 
             //Decrypt using RSA private key in PEM format.

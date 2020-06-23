@@ -1,12 +1,12 @@
 ﻿using ApiCoreStarterKit.Models;
 using Mvc5StarterKit.IzendaBoundary;
 using System;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ApiCoreStarterKit.ApiControllers
 {
-    [RoutePrefix("api/account")]
-    public class AccountController : ApiController
+    [Route("api/account")]
+    public class AccountController : ControllerBase
     {
         #region Methods
         [HttpGet]
@@ -21,13 +21,13 @@ namespace ApiCoreStarterKit.ApiControllers
 
         [HttpGet]
         [Route("GetIzendaAccessToken")]
-        public IHttpActionResult GetIzendaAccessToken(string message)
+        public ActionResult<string> GetIzendaAccessToken(string message)
         {
             var userInfo = IzendaTokenAuthorization.DecryptIzendaAuthenticationMessage(message);
             var token = IzendaTokenAuthorization.GetToken(userInfo);
 
-            return Ok(token);
-        } 
+            return Ok(new { Token = token });
+        }
         #endregion
     }
 }
