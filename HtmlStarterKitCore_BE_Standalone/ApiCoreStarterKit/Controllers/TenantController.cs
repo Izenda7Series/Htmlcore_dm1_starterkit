@@ -7,11 +7,10 @@ using Mvc5StarterKit.IzendaBoundary;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Web.Http;
 
 namespace ApiCoreStarterKit.Controllers
 {
-    [RoutePrefix("api/tenant")]
+    [Route("api/tenant")]
     public class TenantController : BaseController
     {
         #region Variables
@@ -24,8 +23,8 @@ namespace ApiCoreStarterKit.Controllers
 
         #region Methods
         [EnableCors("AllowOrigin")]
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("CreateTenant")]
+        [HttpGet]
+        [Route("CreateTenant")]
         public async Task<JsonResult> CreateTenant(string tenantID, string tenantName)
         {
             if (string.IsNullOrEmpty(tenantID) || string.IsNullOrEmpty(tenantName))
@@ -58,8 +57,8 @@ namespace ApiCoreStarterKit.Controllers
         }
 
         [EnableCors("AllowOrigin")]
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("GetTenantList")]
+        [HttpGet]
+        [Route("GetTenantList")]
         public string GetTenantList()
         {
             // todo

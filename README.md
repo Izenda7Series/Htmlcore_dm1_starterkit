@@ -59,7 +59,7 @@ Run HTML Core project from Visual Studio to launch server and open your website 
 - Use Izenda's RSA Key Generator Utility Located at http://downloads.izenda.com/Utilities/Izenda.Synergy.RSATool.zip
 
   1. AuthRSAPublicKey value in the IzendaSystemSettings table of the Izenda database (note: only use keysize < 1024 to generate because max-length for this field in database is 256) . This value is your public key and should be in XML format.
-  2. And RSAPrivateKey value in Web.config file of the WebForms Kit. This value is your private key and should be in PEM format.
+  2. And RSAPrivateKey value in appsettings file of the HTML Kit. This value is your private key and should be in PEM format.
 
 ### Update DeploymentMode value in IzendaSystemSettings table.
 
