@@ -115,6 +115,17 @@ namespace ApiCoreStarterKit.Controllers
 
             return result;
         }
+
+        [EnableCors("AllowOrigin")]
+        [HttpGet]
+        [Route("GetCurrentUserInfo")]
+        public string GetCurrentUserInfo(string token)
+        {
+            var userInfo = IzendaTokenAuthorization.GetUserInfo(token);
+            var result = JsonConvert.SerializeObject(userInfo.UserName);
+
+            return result;
+        }
         #endregion
     }
 }
