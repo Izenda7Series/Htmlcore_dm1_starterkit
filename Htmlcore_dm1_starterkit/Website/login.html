@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="/izenda/izenda-ui.css" rel="stylesheet">
     <link href="Content/custom.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
@@ -42,25 +41,25 @@
 
         <div class="row">
             <div class="col-md-8">
-                <div class="form-horizontal" id="submitForm">
+                <form class="form-horizontal" id="submitForm">
                     <h4>Use a local account to log in</h4>
                     <hr />
                     <div class="form-group">
                         <label for="tenant" class="col-md-2 control-label">Tenant</label>
                         <div class="col-md-10">
-                            <input type="text" name="tenant" class="form-control" id="tenant">
+                            <input type="text" name="tenant" class="form-control" id="tenant" placeholder="System level login does not require tenant field input">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email" class="col-md-2 control-label"><b>Email</b></label>
                         <div class="col-md-10">
-                            <input type="email" name="email" required="true" class="form-control" id="email">
+                            <input type="email" name="email" class="form-control" id="email" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="psw" class="col-md-2 control-label"><b>Password</b></label>
                         <div class="col-md-10">
-                            <input type="password" name="psw" required="true" class="form-control" id="psw">
+                            <input type="password" name="psw" class="form-control" id="psw" required>
                         </div>
                     </div>
                     <div class="col-md-offset-2 col-md-10">
@@ -71,10 +70,10 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <button type="submit" class="btn btn-default" name="button_sub" id="button_sub">Log in</button>
+                            <button type="submit" class="btn btn-default" value="Submit" name="button_sub" id="button_sub">Log in</button>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
 
             <div class="col-md-4">
@@ -96,7 +95,7 @@
     <!--The below ajax sends the tenant, email, and password to the GenerateToken method-->
     <script type="text/javascript">
         $(function () {
-            $("#button_sub").click(function () {
+            $("#button_sub").click(function (e) {
                 var authApplicationURL = "http://localhost:19657/api/user/GenerateToken";
                 var userTenant = document.getElementById("tenant").value;
                 var userEmail = document.getElementById("email").value;
@@ -107,30 +106,33 @@
                     password: pass
                 };
 
-                $.ajax({
-                    url: authApplicationURL,
-                    type: "GET",
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json',
-                    async: false,
-                    data: value,
-                    success: function (response) {
-                        // The below lines use localStorage to store the token
-                        console.log(response["token"]);
-                        localStorage.setItem('token', response["token"]);
-                        console.log(localStorage.getItem('token'));
+                if (pass !== "" && userEmail !== "") {
+                    $.getJSON({
+                        url: authApplicationURL,
+                        type: "GET",
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        async: false,
+                        data: value,
+                        success: function (response) {
+                            // The below lines use localStorage to store the token
+                            console.log(response["token"]);
+                            localStorage.setItem('token', response["token"]);
+                            console.log(localStorage.getItem('token'));
 
-                        //The below lines used cookies to store the token
-                        //document.cookie = "token";
-                        //console.log(document.cookie);
+                            //The below lines used cookies to store the token
+                            //document.cookie = "token";
+                            //console.log(document.cookie);
 
-                        //redirect
-                        window.location.href = "/index.html";
-                    },
-                    error: function (response) {
-                        bootbox.alert("Login failed. Please check your credentials again.");
-                    }
-                });
+                            //redirect
+                            window.location.href = "/index.html";
+                        },
+                        error: function (response) {
+                            e.preventDefault();
+                            bootbox.alert("Invalid login attempt.");
+                        }
+                    });
+                }
             });
         });
     </script>
