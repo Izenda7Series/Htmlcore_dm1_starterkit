@@ -39,7 +39,7 @@ namespace ApiCoreStarterKit.Controllers
             {
                 // If we allow AD authentication, then email / password field are not required because it can be retrieved from active directory information.
                 // You can remove those fields from front-end UI. 
-                // However, tenant field is required because it is required to GetToken.
+                // However, tenant field is required because it is used for GetToken.
                 success = loginManager.ValidateActiveDirectoryLogin(tenant);
             }
             else
