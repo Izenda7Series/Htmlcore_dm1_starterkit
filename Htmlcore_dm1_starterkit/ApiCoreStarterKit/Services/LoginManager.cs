@@ -1,7 +1,9 @@
 ﻿using ApiCoreStarterKit.Models;
 using Mvc5StarterKit.IzendaBoundary;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.DirectoryServices.AccountManagement;
 using System.Linq;
 
 namespace ApiCoreStarterKit.Services
@@ -67,6 +69,37 @@ namespace ApiCoreStarterKit.Services
 
             // check if password matches
             return password?.Equals(IzendaTokenAuthorization.GetPassword(currentUser.Password)) ?? false;
+        }
+
+        /// <summary>
+        /// Login with Active Directory information.
+        /// Please refer to the following link to get more information on Active Directory 
+        /// https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview
+        /// </summary>
+        public bool ValidateActiveDirectoryLogin(string tenant)
+        {
+            var userName = Environment.UserName; 
+            var userDomainName = Environment.UserDomainName;
+            var authenticationType = ContextType.Domain;
+
+            if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(userDomainName))
+            {
+                using (var context = new PrincipalContext(authenticationType, Environment.UserDomainName))
+                {
+                    var userPrincipal = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, userName);
+
+                    if (userPrincipal != null)
+                    {
+                        var email = userPrincipal.EmailAddress;
+                        var users = GetUserList(email); // get user list from DB
+
+                        // if matches with tenant information, then authentication is successfull.
+                        return users != null ? users.FirstOrDefault(u => u.TenantUniqueName == tenant) != null : false;
+                    }
+                }
+            }
+               
+            return false;
         }
 
         private IEnumerable<UserInfo> GetUserList(string username)
