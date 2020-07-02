@@ -29,13 +29,13 @@ namespace ApiCoreStarterKit.Controllers
         [Route("GenerateToken")]
         public JsonResult GenerateToken(string tenant, string email, string password)
         {
-            var useADlogin = false; // if you want to enable active directory login, then set this boolean value to true. Default is false.
+            var useADlogin = _configuration.GetValue<string>("useADlogin:useADlogin"); // if you want to enable active directory login, then set this boolean value to true (appsettings.json). Default is false.
             var defaultConnectionString = _configuration.GetConnectionString("DefaultConnection");
             var success = false;
 
             var loginManager = new LoginManager(defaultConnectionString);
 
-            if (!string.IsNullOrEmpty(tenant) && useADlogin) // if tenant is null, then assume that it is system level login. Go to the ValidateLogin which is used for regular login process first
+            if (!string.IsNullOrEmpty(tenant) && useADlogin.Equals("true")) // if tenant is null, then assume that it is system level login. Go to the ValidateLogin which is used for regular login process first
             {
                 // If we allow AD authentication, then email / password field are not required because it can be retrieved from active directory information.
                 // You can remove those fields from front-end UI. 
