@@ -29,7 +29,7 @@ namespace ApiCoreStarterKit.Controllers
         [Route("GenerateToken")]
         public JsonResult GenerateToken(string tenant, string email, string password)
         {
-            var useADlogin = true; // if you want to enable active directory login, then set this boolean value to true. Default is false.
+            var useADlogin = false; // if you want to enable active directory login, then set this boolean value to true. Default is false.
             var defaultConnectionString = _configuration.GetConnectionString("DefaultConnection");
             var success = false;
 
