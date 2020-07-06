@@ -64,7 +64,7 @@ Run HTML Core project from Visual Studio to launch server and open your website 
 e.g. value= 1 (BE Standlaone and FE integrated)
 
 ### Active Directory Authentication (optional)
-if you want to use Active Directory authentication, set useADlogin in appsettings.json value to true.
+If you want to use Active Directory authentication, set useADlogin in appsettings.json value to true.
 
 
 ### Initial Log in
