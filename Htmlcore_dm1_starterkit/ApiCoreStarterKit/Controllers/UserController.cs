@@ -29,17 +29,28 @@ namespace ApiCoreStarterKit.Controllers
         [Route("GenerateToken")]
         public JsonResult GenerateToken(string tenant, string email, string password)
         {
-            var defaultConnectionString = _configuration.GetConnectionString("DefaultConnection");
+            bool.TryParse(_configuration.GetValue<string>("useADlogin"), out bool useADlogin); // if you want to enable active directory login, then set this boolean value to true (appsettings.json). Default is false.
 
-            // Check if valid login from IzendaUser table
+            var defaultConnectionString = _configuration.GetConnectionString("DefaultConnection");
+            var success = false;
+
             var loginManager = new LoginManager(defaultConnectionString);
-            var success = loginManager.ValidateLogin(email, password, tenant);
+
+            if (!string.IsNullOrEmpty(tenant) && useADlogin) // if tenant is null, then assume that it is system level login. Go to the ValidateLogin which is used for regular login process first
+            {
+                // If we allow AD authentication, then email / password field are not required because it can be retrieved from active directory information.
+                // You can remove those fields from front-end UI. 
+                // However, tenant field is required because it is used for GetToken.
+                success = loginManager.ValidateActiveDirectoryLogin(tenant);
+            }
+            else
+                success = loginManager.ValidateLogin(email, password, tenant);
 
             // Login failed
             if (!success)
                 return null;
 
-            // Login success, encrypt and send token
+            // Login success, create UserInfo to GetToken
             var user = new UserInfo
             {
                 UserName = email,
@@ -47,6 +58,7 @@ namespace ApiCoreStarterKit.Controllers
                 Password = password
             };
 
+            // get token from constructed user information
             var token = IzendaTokenAuthorization.GetToken(user);
 
             return Json(new { token });

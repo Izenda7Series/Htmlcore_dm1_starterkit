@@ -36,8 +36,6 @@ This Starterkit showcases how to embed the front-end of Izenda into a HTML Core 
 
 Create the Retail database with the retail.sql inside DBScripts folder.
 
- 
-
 ### Deploying the HTML Core Kit
 
 izenda.integrate.js
@@ -64,7 +62,10 @@ Run HTML Core project from Visual Studio to launch server and open your website 
 ### Update DeploymentMode value in IzendaSystemSettings table.
 
 e.g. value= 1 (BE Standlaone and FE integrated)
- 
+
+### Active Directory Authentication (optional)
+If you want to use Active Directory authentication, set useADlogin in appsettings.json value to true.
+
 
 ### Initial Log in
 
