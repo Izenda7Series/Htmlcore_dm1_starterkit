@@ -175,7 +175,7 @@ namespace ApiCoreStarterKit.IzendaBoundary
 
         /// <summary>
         /// Create a user
-        /// For more information, please refer to https://www.izenda.com/docs/ref/api_user.html#post-user
+        /// For more information, please refer to https://www.izenda.com/docs/ref/api_user.html#post-external-user
         /// ATTN: please don't use this deprecated end point https://www.izenda.com/docs/ref/api_user.html#post-user-integration-saveuser
         /// </summary>
         public static async Task<bool> CreateIzendaUser(string tenant, string userID, string lastName, string firstName, bool isAdmin, string roleName, string authToken)
@@ -199,7 +199,7 @@ namespace ApiCoreStarterKit.IzendaBoundary
                 izendaUser.Roles.Add(izendaRole);
             }
 
-            bool success = await WebAPIService.Instance.PostReturnBooleanAsync("user", izendaUser, authToken);
+            bool success = await WebAPIService.Instance.PostReturnBooleanAsync("external/user", izendaUser, authToken);
 
             return success;
         }
